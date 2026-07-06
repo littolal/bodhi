@@ -30,6 +30,10 @@ export const testimonials = [
     quote: 'Bodhi is like a second home to our daughter. Parents gain trust seeing their child enjoy learning and field trips every month.',
     name: 'Mr. Sudarshan & Ms. Lakshmy',
   },
+  {
+    quote: 'Bodhi is like a second home to our daughter. Parents gain trust seeing their child enjoy learning and field trips every month.',
+    name: 'Mr. Sudar & Ms. Lakshmy',
+  }
 ]
 
 export const strengths = [

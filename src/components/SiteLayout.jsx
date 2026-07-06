@@ -1,31 +1,63 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import logo from '../assets/Bodhi Logo Small.png'
+// import logo from '../assets/Bodhi Logo Small.png'
 import footerLogo from '../assets/Bodhi Logo Big Footer.png'
 import { navItems } from '../data/content'
 
 function Header() {
   const [open, setOpen] = useState(false)
+  const headerRef = useRef(null)
+  const toggleRef = useRef(null)
+  const navRef = useRef(null)
+
+  useEffect(() => {
+    function handlePointerDown(event) {
+      if (!open) {
+        return
+      }
+
+      const target = event.target
+      if (headerRef.current?.contains(target) && !navRef.current?.contains(target) && !toggleRef.current?.contains(target)) {
+        setOpen(false)
+      } else if (!headerRef.current?.contains(target)) {
+        setOpen(false)
+      }
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open])
 
   return (
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="container header-inner">
         <Link className="brand" to="/" aria-label="Bodhi School home">
-          <img src={logo} alt="Bodhi School" />
+          <img src={footerLogo} alt="Bodhi School" />
         </Link>
         <button
+          ref={toggleRef}
           className="menu-toggle"
           type="button"
           aria-expanded={open}
           aria-controls="primary-navigation"
           onClick={() => setOpen((value) => !value)}
         >
-          <span />
-          <span />
-          <span />
+          <span className="menu-toggle-bar" />
+          <span className="menu-toggle-bar" />
+          <span className="menu-toggle-bar" />
           <span className="sr-only">Toggle navigation</span>
         </button>
-        <nav id="primary-navigation" className={open ? 'primary-nav is-open' : 'primary-nav'} aria-label="Primary navigation">
+        <nav ref={navRef} id="primary-navigation" className={open ? 'primary-nav is-open' : 'primary-nav'} aria-label="Primary navigation">
           {navItems.map((item) => (
             <NavLink key={item.to} to={item.to} end={item.to === '/'} onClick={() => setOpen(false)}>
               {item.label}

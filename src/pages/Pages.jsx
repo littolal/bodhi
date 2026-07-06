@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   admissionSteps,
@@ -18,7 +18,7 @@ const images = {
   admission: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85',
   facilities: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?auto=format&fit=crop&w=1200&q=85',
   gallery: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=1200&q=85',
-  contact: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=85',
+  contact: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80??auto=format&fit=crop&w=1200&q=85',
 }
 
 export function HomePage() {
@@ -68,8 +68,14 @@ export function HomePage() {
       <section className="section">
         <div className="container testimonial-layout">
           <SectionHeading eyebrow="Parent voices" title="Trust grows in the everyday moments." />
-          <div className="testimonial-stack">
-            {testimonials.map((item) => <QuoteBlock key={item.name} quote={item.quote} author={item.name} />)}
+          <div className="testimonial-carousel" aria-label="Parent testimonials">
+            <div className="testimonial-track">
+              {[...testimonials, ...testimonials].map((item, index) => (
+                <div className="testimonial-slide" key={`${item.name}-${index}`}>
+                  <QuoteBlock quote={item.quote} author={item.name} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -198,13 +204,130 @@ export function FacilitiesPage() {
 }
 
 export function GalleryPage() {
+  const [activeIndex, setActiveIndex] = useState(null)
+  const isOpen = activeIndex !== null
+
+  function openModal(index) {
+    setActiveIndex(index)
+  }
+
+  function closeModal() {
+    setActiveIndex(null)
+  }
+
   return (
     <>
       <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." />
       <PageHero eyebrow="Gallery" title="School life, in all its colour." intro="A glimpse of children learning, moving, making and celebrating together." image={images.gallery} />
-      <section className="section"><div className="container gallery-grid">{galleryItems.map((item) => <figure className="gallery-card" key={item.title}><img src={item.image} alt={`${item.title} at Bodhi School`} loading="lazy" /><figcaption>{item.title}</figcaption></figure>)}</div></section>
-      <section className="section gallery-social"><div className="container split-grid"><SectionHeading eyebrow="More moments" title="Follow the everyday life of Bodhi." /><a className="text-link" href="https://www.facebook.com/pg/Bodhischool/photos/" target="_blank" rel="noreferrer">Visit our Facebook page <ArrowIcon /></a></div></section>
+      <section className="section">
+        <div className="container gallery-grid">
+          {galleryItems.map((item, index) => (
+            <figure className="gallery-card" key={item.title}>
+              <button
+                type="button"
+                className="gallery-card-button"
+                onClick={() => openModal(index)}
+                aria-label={`Open ${item.title}`}
+              >
+                <img src={item.image} alt={`${item.title} at Bodhi School`} loading="lazy" />
+                <figcaption>{item.title}</figcaption>
+              </button>
+            </figure>
+          ))}
+        </div>
+      </section>
+      {isOpen && (
+        <GalleryModal
+          items={galleryItems}
+          activeIndex={activeIndex}
+          onClose={closeModal}
+          onSelect={setActiveIndex}
+        />
+      )}
     </>
+  )
+}
+
+function GalleryModal({ items, activeIndex, onClose, onSelect }) {
+  const activeItem = items[activeIndex]
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        onClose()
+      }
+
+      if (event.key === 'ArrowLeft') {
+        onSelect((value) => (value - 1 + items.length) % items.length)
+      }
+
+      if (event.key === 'ArrowRight') {
+        onSelect((value) => (value + 1) % items.length)
+      }
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [items.length, onClose, onSelect])
+
+  return (
+    <div className="gallery-modal" role="dialog" aria-modal="true" aria-label="Gallery viewer" onClick={onClose}>
+      <div className="gallery-modal-shell" onClick={(event) => event.stopPropagation()}>
+        <div className="gallery-modal-head">
+          <div>
+            <p className="eyebrow">Gallery viewer</p>
+            <h2>{activeItem.title}</h2>
+          </div>
+          <button className="gallery-modal-close" type="button" onClick={onClose}>
+            Close
+          </button>
+        </div>
+        <div className="gallery-modal-layout">
+          <div className="gallery-modal-thumb-grid" aria-label="Gallery thumbnails">
+            {items.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                className={index === activeIndex ? 'gallery-thumb is-active' : 'gallery-thumb'}
+                onClick={() => onSelect(index)}
+                aria-label={`View ${item.title}`}
+                aria-pressed={index === activeIndex}
+              >
+                <img src={item.image} alt="" loading="lazy" />
+                <span>{item.title}</span>
+              </button>
+            ))}
+          </div>
+          <div className="gallery-modal-viewer">
+            <button
+              type="button"
+              className="gallery-modal-arrow gallery-modal-arrow-left"
+              onClick={() => onSelect((value) => (value - 1 + items.length) % items.length)}
+              aria-label="Previous image"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <figure key={activeItem.image} className="gallery-modal-figure reveal">
+              <img src={activeItem.image} alt={`${activeItem.title} at Bodhi School`} />
+              <figcaption>{activeItem.title}</figcaption>
+            </figure>
+            <button
+              type="button"
+              className="gallery-modal-arrow gallery-modal-arrow-right"
+              onClick={() => onSelect((value) => (value + 1) % items.length)}
+              aria-label="Next image"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -239,7 +362,7 @@ export function ContactPage() {
           </form>
         </div>
       </section>
-      <section className="map-wrap" aria-label="Bodhi School location"><iframe title="Map showing Bodhi School in Pettah, Trivandrum" src="https://www.google.com/maps?q=Pettah%2C%20Thiruvananthapuram%2C%20Kerala%20695024&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></section>
+      <section className="map-wrap" aria-label="Bodhi School location"><iframe title="Map showing Bodhi School in Pettah, Trivandrum" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1973.068071456528!2d76.926337!3d8.486141!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb1f77ed44d5%3A0x5a65a44612a1fbde!2sBodhi%20School!5e0!3m2!1sen!2sin!4v1782239629314!5m2!1sen!2sin&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></section>
     </>
   )
 }
