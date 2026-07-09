@@ -94,7 +94,7 @@ function Footer() {
         <span>© {new Date().getFullYear()} Bodhi School</span>
         <div>
           <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer">Facebook </a>
-          <a href="https://www.instagram.com/_bodhischool/" target="_blank" rel="noreferrer"> Instagram</a>
+          <a href="https://www.instagram.com/_bodhischool_/" target="_blank" rel="noreferrer"> Instagram</a>
         </div>
       </div>
     </footer>
