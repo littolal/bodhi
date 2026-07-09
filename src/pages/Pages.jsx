@@ -52,15 +52,20 @@ export function HomePage() {
           <SectionHeading eyebrow="Welcome to Bodhi" title="Education that follows the child’s curiosity." />
           <div className="prose">
             <p className="lead">“What we want is to see the child in pursuit of knowledge, and not knowledge in pursuit of the child.”</p>
-            <p>Bodhi is a new generation school empowering young minds to achieve excellence through a foundation of conceptual learning.</p>
-            <p>We adopt contemporary and innovative methods that provoke thought, encourage responsibility and develop value-based morale for the challenges of tomorrow.</p>
+            <p>At Bodhi, education is not just about learning—it’s
+              about shaping lives. We are a new-generation school committed to
+              nurturing young minds through a strong foundation of conceptual
+              understanding.</p>
+            <p>Every child who walks into Bodhi is seen as full of
+              promise, curiosity, and untapped potential, and we take that
+              responsibility seriously.</p>
           </div>
         </div>
       </section>
 
       <section className="section tinted-section">
         <div className="container">
-          <SectionHeading eyebrow="Our specialities" title="A wider world of learning." text="Starting early and starting right is the best foundation we can give the next generation." />
+          <SectionHeading eyebrow="Activities & Programs Offered" title="A wider world of learning." text="At Bodhi, learning goes far beyond the classroom. Our carefully curated activities are designed to nurture creativity, confidence, discipline, and essential life skills—helping children grow into well-rounded individuals." />
           <FeatureGrid items={specialties} />
         </div>
       </section>
@@ -70,9 +75,13 @@ export function HomePage() {
           <SectionHeading eyebrow="Parent voices" title="Trust grows in the everyday moments." />
           <div className="testimonial-carousel" aria-label="Parent testimonials">
             <div className="testimonial-track">
-              {[...testimonials, ...testimonials].map((item, index) => (
-                <div className="testimonial-slide" key={`${item.name}-${index}`}>
-                  <QuoteBlock quote={item.quote} author={item.name} />
+              {[0, 1].map((groupIndex) => (
+                <div className="testimonial-group" key={groupIndex} aria-hidden={groupIndex === 1}>
+                  {testimonials.map((item) => (
+                    <div className="testimonial-slide" key={`${item.name}-${groupIndex}`}>
+                      <QuoteBlock quote={item.quote} author={item.name} />
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
@@ -102,9 +111,18 @@ export function AboutPage() {
         <div className="container split-grid">
           <SectionHeading eyebrow="Vision & mission" title="Strong roots for a generous future." />
           <div className="prose">
-            <p>Bodhi is a new generation school empowering young minds to achieve excellence through a foundation of conceptual learning.</p>
-            <p>Our mission is to prepare children to become self-reliant, strong individuals and help them grow intellectually with social and emotional maturity.</p>
-            <p>By providing every child with the right nourishment during their peak growth, we help ensure the self-confidence and prosperity of their future.</p>
+            <p>We believe that every child begins as a blank canvas.
+              With the right guidance, environment, and encouragement, they can grow
+              into confident, capable, and compassionate individuals.
+            </p>
+            <p>At Bodhi, we go
+              beyond traditional teaching. Our approach is inspired by the work of
+              child development experts like Jean Piaget and Lev Vygotsky, which means
+              your child doesn’t just listen and memorize, but actively explores,
+              questions, and understands.</p>
+            <p>Our teachers don’t simply instruct—they
+              guide, support, and nurture each child based on their unique pace and
+              learning style.</p>
           </div>
         </div>
       </section>
@@ -137,6 +155,18 @@ export function WhyBodhiPage() {
     <>
       <Seo title="Why Bodhi" description="Discover Bodhi School’s learning philosophy, strengths and approach to early education." />
       <PageHero eyebrow="Why Bodhi" title="Like a tree, a child flourishes with the right care." intro="The name Bodhi evokes enlightenment and the patient work of helping young minds become strong, smart and generous." image={images.why} />
+      <section className="section tinted-section">
+        <div className="container split-grid">
+          <SectionHeading eyebrow="Our Special Focus: Early Childhood Care" title="Starting early and starting right makes all the difference. " />
+          <div className="prose"><p>The early years are critical in shaping:</p>
+            <p>
+              -Language and communication skills</p><p>-Logical and mathematical thinking</p><p>
+              -Emotional strength and confidence.</p><p> At Bodhi, we carefully design
+                experiences that nurture these abilities during this important stage.
+                Through the right environment and meaningful learning opportunities, we
+                help children build a strong foundation for lifelong success.</p></div>
+        </div>
+      </section>
       <section className="section">
         <div className="container split-grid">
           <SectionHeading eyebrow="The meaning of Bodhi" title="A nourishing environment in the early years." />
@@ -165,6 +195,23 @@ export function AdmissionPage() {
     <>
       <Seo title="Admission" description="View Bodhi School’s admission process, age eligibility and enrolment information." />
       <PageHero eyebrow="Admission" title="A thoughtful beginning to your child’s Bodhi journey." intro="Our admission process helps families and teachers understand the child, choose the right placement and begin with confidence." image={images.admission}><ButtonLink to="/contact">Plan a school visit</ButtonLink></PageHero>
+      <section className="section tinted-section">
+        <div className="container split-grid">
+          <SectionHeading eyebrow="Academics"title="Conceptual Learning for a Changing World" />
+          <div className="prose"><p>At Bodhi, we follow the IGCSE (International General
+            Certificate of Secondary Education) curriculum, providing a globally
+            recognised and concept-based learning approach.</p>
+            <p>We proudly offer admissions for learners from Pre-KG through Grade X. Our academic framework focuses on:</p>
+            <ul>
+              <li>Strong conceptual understanding over rote learning</li>
+              <li>Inquiry-based and experiential learning methods</li>
+              <li>Developing critical thinking and problem-solving skills</li>
+              <li>Encouraging independent learning and curiosity</li>
+              <li>Real-world application of knowledge</li>
+            </ul>
+          </div>
+        </div>
+      </section>
       <section className="section">
         <div className="container">
           <SectionHeading eyebrow="The process" title="Seven clear steps, one shared goal." />

@@ -92,7 +92,10 @@ function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} Bodhi School</span>
-        <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer">Facebook</a>
+        <div>
+          <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer">Facebook </a>
+          <a href="https://www.instagram.com/_bodhischool/" target="_blank" rel="noreferrer"> Instagram</a>
+        </div>
       </div>
     </footer>
   )
