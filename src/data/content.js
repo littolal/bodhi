@@ -9,12 +9,13 @@ export const navItems = [
 ]
 
 export const specialties = [
-  { number: '01', title: 'Robotics', text: 'To instill interest in science at a young age.' },
-  { number: '02', title: 'Nritta Yoga', text: 'Yoga for all ages.' },
-  { number: '03', title: 'Drama Academy', text: 'Skills program from Helen O’Grady International Drama Academy.' },
-  { number: '04', title: 'Edusports', text: 'Super Child Development Program for kindergarteners.' },
-  { number: '05', title: 'Chess School', text: 'To improve the mental ability of every child.' },
-  { number: '06', title: 'Kung-fu', text: 'Kung Fu classes for Grades I and above.' },
+  { number: '01', title: 'Chess', text: 'Students develop strategic thinking, concentration, patience, emotional resilience, a positive outlook, and informed decision-making abilities—essential skills that support success both academically and in everyday life.' },
+  { number: '02', title: 'Robotics', text: 'Our robotics program introduces children to the exciting world of technology and innovation.By building and experimenting, students enhance their problem- solving skills, logical thinking, and creativity. ' },
+  { number: '03', title: 'Sports', text: 'Children build physical fitness, teamwork, discipline, and a strong sporting spirit—laying the foundation for a healthy and active lifestyle. ' },
+  { number: '04', title: 'Kalari', text: 'We proudly offer training in the traditional martial art of Kalaripayattu. This ancient practice helps improve strength, flexibility, focus, and self-discipline while connecting children to cultural roots.' },
+  { number: '05', title: 'Developmental Drama', text: 'Our structured drama and communication program helps students develop confidence, creativity, communication skills, and emotional expression through engaging, interactive experiences.' },
+  { number: '06', title: 'Finance Funda', text: 'Our Finance Funda sessions introduce children to basic financial literacy—helping them understand money, saving, and responsible decision-making from an early age.' },
+  { number: '07', title: 'Speak to Lead', text: 'This program focuses on building communication, public speaking, and leadership skills while fostering emotional resilience, a positive outlook, and informed decision-making—empowering students to express themselves clearly and confidently in any situation.' }
 ]
 
 export const testimonials = [
@@ -29,6 +30,14 @@ export const testimonials = [
   {
     quote: 'Bodhi is like a second home to our daughter. Parents gain trust seeing their child enjoy learning and field trips every month.',
     name: 'Mr. Sudarshan & Ms. Lakshmy',
+  },
+  {
+    quote: 'We are happy with our experience at Bodhi School. Both our kids, Isha and Jiya have shown remarkable progress since joining, and we are satisfied to see how much Bodhi is contributing to their overall development. The environment and the teachers’ dedication have indeed helped them grow both academically and personally. Heartfelt thanks to the Bodhi family.',
+    name: 'Dr. Hima - Parents of Isha H of Grade V and Jiya H of Grade I',
+  },
+  {
+    quote: 'Selecting the right school is one of the most significant decisions a parent can make. As my eldest daughter completes her 10th-grade journey at Bodhi School, I want to express my sincere gratitude for the remarkable experience we have had. Bodhi School provides much more than just an education; it offers a safe, nurturing environment where children are taught to lead with values and integrity. I have been particularly impressed by the school’s commitment to individual growth. Through a wide range of opportunities, my daughter was encouraged to explore her unique talents and build the confidence to express herself authentically. What truly sets Bodhi apart is the personalised attention from the faculty. I am deeply grateful to the entire Bodhi community',
+    name: 'Dr. Meera Babu - Parents of Akshit Abhilash of Grade IX and Advika Abhilash (Grade X alumna)'
   },
 ]
 

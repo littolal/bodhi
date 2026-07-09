@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   admissionSteps,
@@ -18,7 +18,7 @@ const images = {
   admission: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85',
   facilities: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?auto=format&fit=crop&w=1200&q=85',
   gallery: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=1200&q=85',
-  contact: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=85',
+  contact: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80??auto=format&fit=crop&w=1200&q=85',
 }
 
 export function HomePage() {
@@ -52,15 +52,20 @@ export function HomePage() {
           <SectionHeading eyebrow="Welcome to Bodhi" title="Education that follows the child’s curiosity." />
           <div className="prose">
             <p className="lead">“What we want is to see the child in pursuit of knowledge, and not knowledge in pursuit of the child.”</p>
-            <p>Bodhi is a new generation school empowering young minds to achieve excellence through a foundation of conceptual learning.</p>
-            <p>We adopt contemporary and innovative methods that provoke thought, encourage responsibility and develop value-based morale for the challenges of tomorrow.</p>
+            <p>At Bodhi, education is not just about learning—it’s
+              about shaping lives. We are a new-generation school committed to
+              nurturing young minds through a strong foundation of conceptual
+              understanding.</p>
+            <p>Every child who walks into Bodhi is seen as full of
+              promise, curiosity, and untapped potential, and we take that
+              responsibility seriously.</p>
           </div>
         </div>
       </section>
 
       <section className="section tinted-section">
         <div className="container">
-          <SectionHeading eyebrow="Our specialities" title="A wider world of learning." text="Starting early and starting right is the best foundation we can give the next generation." />
+          <SectionHeading eyebrow="Activities & Programs Offered" title="A wider world of learning." text="At Bodhi, learning goes far beyond the classroom. Our carefully curated activities are designed to nurture creativity, confidence, discipline, and essential life skills—helping children grow into well-rounded individuals." />
           <FeatureGrid items={specialties} />
         </div>
       </section>
@@ -68,8 +73,18 @@ export function HomePage() {
       <section className="section">
         <div className="container testimonial-layout">
           <SectionHeading eyebrow="Parent voices" title="Trust grows in the everyday moments." />
-          <div className="testimonial-stack">
-            {testimonials.map((item) => <QuoteBlock key={item.name} quote={item.quote} author={item.name} />)}
+          <div className="testimonial-carousel" aria-label="Parent testimonials">
+            <div className="testimonial-track">
+              {[0, 1].map((groupIndex) => (
+                <div className="testimonial-group" key={groupIndex} aria-hidden={groupIndex === 1}>
+                  {testimonials.map((item) => (
+                    <div className="testimonial-slide" key={`${item.name}-${groupIndex}`}>
+                      <QuoteBlock quote={item.quote} author={item.name} />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -96,9 +111,18 @@ export function AboutPage() {
         <div className="container split-grid">
           <SectionHeading eyebrow="Vision & mission" title="Strong roots for a generous future." />
           <div className="prose">
-            <p>Bodhi is a new generation school empowering young minds to achieve excellence through a foundation of conceptual learning.</p>
-            <p>Our mission is to prepare children to become self-reliant, strong individuals and help them grow intellectually with social and emotional maturity.</p>
-            <p>By providing every child with the right nourishment during their peak growth, we help ensure the self-confidence and prosperity of their future.</p>
+            <p>We believe that every child begins as a blank canvas.
+              With the right guidance, environment, and encouragement, they can grow
+              into confident, capable, and compassionate individuals.
+            </p>
+            <p>At Bodhi, we go
+              beyond traditional teaching. Our approach is inspired by the work of
+              child development experts like Jean Piaget and Lev Vygotsky, which means
+              your child doesn’t just listen and memorize, but actively explores,
+              questions, and understands.</p>
+            <p>Our teachers don’t simply instruct—they
+              guide, support, and nurture each child based on their unique pace and
+              learning style.</p>
           </div>
         </div>
       </section>
@@ -131,6 +155,18 @@ export function WhyBodhiPage() {
     <>
       <Seo title="Why Bodhi" description="Discover Bodhi School’s learning philosophy, strengths and approach to early education." />
       <PageHero eyebrow="Why Bodhi" title="Like a tree, a child flourishes with the right care." intro="The name Bodhi evokes enlightenment and the patient work of helping young minds become strong, smart and generous." image={images.why} />
+      <section className="section tinted-section">
+        <div className="container split-grid">
+          <SectionHeading eyebrow="Our Special Focus: Early Childhood Care" title="Starting early and starting right makes all the difference. " />
+          <div className="prose"><p>The early years are critical in shaping:</p>
+            <p>
+              -Language and communication skills</p><p>-Logical and mathematical thinking</p><p>
+              -Emotional strength and confidence.</p><p> At Bodhi, we carefully design
+                experiences that nurture these abilities during this important stage.
+                Through the right environment and meaningful learning opportunities, we
+                help children build a strong foundation for lifelong success.</p></div>
+        </div>
+      </section>
       <section className="section">
         <div className="container split-grid">
           <SectionHeading eyebrow="The meaning of Bodhi" title="A nourishing environment in the early years." />
@@ -159,6 +195,23 @@ export function AdmissionPage() {
     <>
       <Seo title="Admission" description="View Bodhi School’s admission process, age eligibility and enrolment information." />
       <PageHero eyebrow="Admission" title="A thoughtful beginning to your child’s Bodhi journey." intro="Our admission process helps families and teachers understand the child, choose the right placement and begin with confidence." image={images.admission}><ButtonLink to="/contact">Plan a school visit</ButtonLink></PageHero>
+      <section className="section tinted-section">
+        <div className="container split-grid">
+          <SectionHeading eyebrow="Academics"title="Conceptual Learning for a Changing World" />
+          <div className="prose"><p>At Bodhi, we follow the IGCSE (International General
+            Certificate of Secondary Education) curriculum, providing a globally
+            recognised and concept-based learning approach.</p>
+            <p>We proudly offer admissions for learners from Pre-KG through Grade X. Our academic framework focuses on:</p>
+            <ul>
+              <li>Strong conceptual understanding over rote learning</li>
+              <li>Inquiry-based and experiential learning methods</li>
+              <li>Developing critical thinking and problem-solving skills</li>
+              <li>Encouraging independent learning and curiosity</li>
+              <li>Real-world application of knowledge</li>
+            </ul>
+          </div>
+        </div>
+      </section>
       <section className="section">
         <div className="container">
           <SectionHeading eyebrow="The process" title="Seven clear steps, one shared goal." />
@@ -198,13 +251,130 @@ export function FacilitiesPage() {
 }
 
 export function GalleryPage() {
+  const [activeIndex, setActiveIndex] = useState(null)
+  const isOpen = activeIndex !== null
+
+  function openModal(index) {
+    setActiveIndex(index)
+  }
+
+  function closeModal() {
+    setActiveIndex(null)
+  }
+
   return (
     <>
       <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." />
       <PageHero eyebrow="Gallery" title="School life, in all its colour." intro="A glimpse of children learning, moving, making and celebrating together." image={images.gallery} />
-      <section className="section"><div className="container gallery-grid">{galleryItems.map((item) => <figure className="gallery-card" key={item.title}><img src={item.image} alt={`${item.title} at Bodhi School`} loading="lazy" /><figcaption>{item.title}</figcaption></figure>)}</div></section>
-      <section className="section gallery-social"><div className="container split-grid"><SectionHeading eyebrow="More moments" title="Follow the everyday life of Bodhi." /><a className="text-link" href="https://www.facebook.com/pg/Bodhischool/photos/" target="_blank" rel="noreferrer">Visit our Facebook page <ArrowIcon /></a></div></section>
+      <section className="section">
+        <div className="container gallery-grid">
+          {galleryItems.map((item, index) => (
+            <figure className="gallery-card" key={item.title}>
+              <button
+                type="button"
+                className="gallery-card-button"
+                onClick={() => openModal(index)}
+                aria-label={`Open ${item.title}`}
+              >
+                <img src={item.image} alt={`${item.title} at Bodhi School`} loading="lazy" />
+                <figcaption>{item.title}</figcaption>
+              </button>
+            </figure>
+          ))}
+        </div>
+      </section>
+      {isOpen && (
+        <GalleryModal
+          items={galleryItems}
+          activeIndex={activeIndex}
+          onClose={closeModal}
+          onSelect={setActiveIndex}
+        />
+      )}
     </>
+  )
+}
+
+function GalleryModal({ items, activeIndex, onClose, onSelect }) {
+  const activeItem = items[activeIndex]
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        onClose()
+      }
+
+      if (event.key === 'ArrowLeft') {
+        onSelect((value) => (value - 1 + items.length) % items.length)
+      }
+
+      if (event.key === 'ArrowRight') {
+        onSelect((value) => (value + 1) % items.length)
+      }
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [items.length, onClose, onSelect])
+
+  return (
+    <div className="gallery-modal" role="dialog" aria-modal="true" aria-label="Gallery viewer" onClick={onClose}>
+      <div className="gallery-modal-shell" onClick={(event) => event.stopPropagation()}>
+        <div className="gallery-modal-head">
+          <div>
+            <p className="eyebrow">Gallery viewer</p>
+            <h2>{activeItem.title}</h2>
+          </div>
+          <button className="gallery-modal-close" type="button" onClick={onClose}>
+            Close
+          </button>
+        </div>
+        <div className="gallery-modal-layout">
+          <div className="gallery-modal-thumb-grid" aria-label="Gallery thumbnails">
+            {items.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                className={index === activeIndex ? 'gallery-thumb is-active' : 'gallery-thumb'}
+                onClick={() => onSelect(index)}
+                aria-label={`View ${item.title}`}
+                aria-pressed={index === activeIndex}
+              >
+                <img src={item.image} alt="" loading="lazy" />
+                <span>{item.title}</span>
+              </button>
+            ))}
+          </div>
+          <div className="gallery-modal-viewer">
+            <button
+              type="button"
+              className="gallery-modal-arrow gallery-modal-arrow-left"
+              onClick={() => onSelect((value) => (value - 1 + items.length) % items.length)}
+              aria-label="Previous image"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <figure key={activeItem.image} className="gallery-modal-figure reveal">
+              <img src={activeItem.image} alt={`${activeItem.title} at Bodhi School`} />
+              <figcaption>{activeItem.title}</figcaption>
+            </figure>
+            <button
+              type="button"
+              className="gallery-modal-arrow gallery-modal-arrow-right"
+              onClick={() => onSelect((value) => (value + 1) % items.length)}
+              aria-label="Next image"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -239,7 +409,7 @@ export function ContactPage() {
           </form>
         </div>
       </section>
-      <section className="map-wrap" aria-label="Bodhi School location"><iframe title="Map showing Bodhi School in Pettah, Trivandrum" src="https://www.google.com/maps?q=Pettah%2C%20Thiruvananthapuram%2C%20Kerala%20695024&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></section>
+      <section className="map-wrap" aria-label="Bodhi School location"><iframe title="Map showing Bodhi School in Pettah, Trivandrum" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1973.068071456528!2d76.926337!3d8.486141!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb1f77ed44d5%3A0x5a65a44612a1fbde!2sBodhi%20School!5e0!3m2!1sen!2sin!4v1782239629314!5m2!1sen!2sin&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></section>
     </>
   )
 }
