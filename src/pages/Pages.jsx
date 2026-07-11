@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   admissionSteps,
@@ -336,6 +336,7 @@ function GallerySectionRow({ section, sectionIndex, onOpen }) {
 
 function GalleryModal({ items, activeIndex, onClose, onSelect }) {
   const activeItem = items[activeIndex]
+  const swipeStartRef = useRef(null)
 
   useEffect(() => {
     function handleKeyDown(event) {
@@ -364,6 +365,37 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
     }
   }, [items.length, onClose, onSelect])
 
+  function handlePointerDown(event) {
+    swipeStartRef.current = {
+      pointerId: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+    }
+  }
+
+  function handlePointerUp(event) {
+    const start = swipeStartRef.current
+    swipeStartRef.current = null
+
+    if (!start || start.pointerId !== event.pointerId) {
+      return
+    }
+
+    const deltaX = event.clientX - start.x
+    const deltaY = event.clientY - start.y
+
+    if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
+      return
+    }
+
+    if (deltaX < 0) {
+      onSelect((value) => (value + 1) % items.length)
+      return
+    }
+
+    onSelect((value) => (value - 1 + items.length) % items.length)
+  }
+
   return (
     <div className="gallery-modal" role="dialog" aria-modal="true" aria-label="Gallery viewer" onClick={onClose}>
       <div className="gallery-modal-shell" onClick={(event) => event.stopPropagation()}>
@@ -375,7 +407,14 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div className="gallery-modal-viewer">
+        <div
+          className="gallery-modal-viewer"
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={() => {
+            swipeStartRef.current = null
+          }}
+        >
           <button
             type="button"
             className="gallery-modal-arrow gallery-modal-arrow-left"

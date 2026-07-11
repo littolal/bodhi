@@ -264,7 +264,7 @@ p { max-width: 68ch; }
   .feature-card { min-height: 240px; }
   .testimonial-layout { gap: 10px; }
   .testimonial-carousel { --testimonial-visible: 1; --testimonial-card-height: 220px; }
-  .testimonial-track { display: flex; flex-direction: column; animation: testimonial-scroll 55s linear infinite; will-change: transform; }
+  .testimonial-track { display: flex; flex-direction: column; animation: testimonial-scroll 60s linear infinite; will-change: transform; }
   .person-card { grid-template-columns: 85px 1fr; padding: 24px; }
   .person-initial { width: 85px; height: 105px; font-size: 1.8rem; }
   .editorial-grid article:nth-child(2) { margin-top: 30px; }
