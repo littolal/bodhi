@@ -366,10 +366,17 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
   }, [items.length, onClose, onSelect])
 
   function handlePointerDown(event) {
+    event.currentTarget.setPointerCapture(event.pointerId)
     swipeStartRef.current = {
       pointerId: event.pointerId,
       x: event.clientX,
       y: event.clientY,
+    }
+  }
+
+  function releasePointer(event) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
     }
   }
 
@@ -385,14 +392,17 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
     const deltaY = event.clientY - start.y
 
     if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
+      releasePointer(event)
       return
     }
 
     if (deltaX < 0) {
+      releasePointer(event)
       onSelect((value) => (value + 1) % items.length)
       return
     }
 
+    releasePointer(event)
     onSelect((value) => (value - 1 + items.length) % items.length)
   }
 
@@ -407,14 +417,7 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div
-          className="gallery-modal-viewer"
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={() => {
-            swipeStartRef.current = null
-          }}
-        >
+        <div className="gallery-modal-viewer">
           <button
             type="button"
             className="gallery-modal-arrow gallery-modal-arrow-left"
@@ -423,7 +426,16 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
           >
             <span aria-hidden="true">←</span>
           </button>
-          <figure key={activeItem.image} className="gallery-modal-figure reveal">
+          <figure
+            key={activeItem.image}
+            className="gallery-modal-figure reveal"
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={(event) => {
+              swipeStartRef.current = null
+              releasePointer(event)
+            }}
+          >
             <img src={activeItem.image} alt={`${activeItem.section}`} />
           </figure>
           <button

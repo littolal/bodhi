@@ -176,7 +176,8 @@ p { max-width: 68ch; }
 .gallery-modal-viewer { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; gap: 16px; align-items: center; }
 .gallery-modal-arrow { display: grid; place-items: center; width: 56px; height: 56px; border: 0; background: var(--ink); color: white; cursor: pointer; transition: transform .25s ease, background .25s ease; }
 .gallery-modal-arrow:hover { transform: translateY(-2px); background: var(--olive); }
-.gallery-modal-figure { margin: 0; }
+.gallery-modal-figure { margin: 0; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.gallery-modal-figure img { -webkit-user-drag: none; user-drag: none; }
 .gallery-modal-figure img { width: 100%; max-height: min(68vh, 760px); object-fit: contain; background: #f5f1e7; }
 .gallery-modal-figure figcaption { display: flex; justify-content: space-between; gap: 20px; padding-top: 14px; font-size: 1rem; }
 .gallery-modal-figure figcaption span { color: var(--leaf); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
