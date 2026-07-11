@@ -4,7 +4,7 @@ import {
   admissionSteps,
   ageGroups,
   facilities,
-  galleryItems,
+  gallerySections,
   specialties,
   strengths,
   testimonials,
@@ -159,9 +159,12 @@ export function WhyBodhiPage() {
         <div className="container split-grid">
           <SectionHeading eyebrow="Our Special Focus: Early Childhood Care" title="Starting early and starting right makes all the difference. " />
           <div className="prose"><p>The early years are critical in shaping:</p>
-            <p>
-              -Language and communication skills</p><p>-Logical and mathematical thinking</p><p>
-              -Emotional strength and confidence.</p><p> At Bodhi, we carefully design
+            <ul>
+              <li>Language and communication skills</li>
+              <li>Logical and mathematical thinking</li>
+              <li>Emotional strength and confidence</li>
+            </ul>
+            <p> At Bodhi, we carefully design
                 experiences that nurture these abilities during this important stage.
                 Through the right environment and meaningful learning opportunities, we
                 help children build a strong foundation for lifelong success.</p></div>
@@ -251,15 +254,22 @@ export function FacilitiesPage() {
 }
 
 export function GalleryPage() {
-  const [activeIndex, setActiveIndex] = useState(null)
-  const isOpen = activeIndex !== null
+  const [activeSectionIndex, setActiveSectionIndex] = useState(null)
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0)
+  const isOpen = activeSectionIndex !== null
+  const activeSection = isOpen ? gallerySections[activeSectionIndex] : null
+  const galleryItems = activeSection?.photos.map((photo) => ({
+    section: activeSection.title,
+    image: photo.image,
+  })) ?? []
 
-  function openModal(index) {
-    setActiveIndex(index)
+  function openModal(sectionIndex, photoIndex) {
+    setActiveSectionIndex(sectionIndex)
+    setActivePhotoIndex(photoIndex)
   }
 
   function closeModal() {
-    setActiveIndex(null)
+    setActiveSectionIndex(null)
   }
 
   return (
@@ -267,31 +277,60 @@ export function GalleryPage() {
       <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." />
       <PageHero eyebrow="Gallery" title="School life, in all its colour." intro="A glimpse of children learning, moving, making and celebrating together." image={images.gallery} />
       <section className="section">
-        <div className="container gallery-grid">
-          {galleryItems.map((item, index) => (
-            <figure className="gallery-card" key={item.title}>
-              <button
-                type="button"
-                className="gallery-card-button"
-                onClick={() => openModal(index)}
-                aria-label={`Open ${item.title}`}
-              >
-                <img src={item.image} alt={`${item.title} at Bodhi School`} loading="lazy" />
-                <figcaption>{item.title}</figcaption>
-              </button>
-            </figure>
-          ))}
+        <div className="container gallery-sections">
+          {gallerySections.map((section, index) => {
+            return (
+              <GallerySectionRow
+                key={section.title}
+                sectionIndex={index}
+                section={section}
+                onOpen={openModal}
+              />
+            )
+          })}
         </div>
       </section>
       {isOpen && (
         <GalleryModal
           items={galleryItems}
-          activeIndex={activeIndex}
+          activeIndex={activePhotoIndex}
           onClose={closeModal}
-          onSelect={setActiveIndex}
+          onSelect={setActivePhotoIndex}
         />
       )}
     </>
+  )
+}
+
+function GallerySectionRow({ section, sectionIndex, onOpen }) {
+  const trackItems = [...section.photos, ...section.photos]
+
+  return (
+    <article className="gallery-section">
+      <div className="gallery-section-head">
+        <div>
+          <h2>{section.title}</h2>
+        </div>
+      </div>
+      <div className="gallery-marquee" aria-label={`${section.title} gallery`}>
+        <div className="gallery-marquee-track">
+          {trackItems.map((photo, index) => {
+            const photoIndex = index % section.photos.length
+            return (
+              <button
+                key={`${section.title}-${index}`}
+                type="button"
+                className="gallery-marquee-card"
+                onClick={() => onOpen(sectionIndex, photoIndex)}
+                aria-label={`Open ${section.title}`}
+              >
+                <img src={photo.image} alt={`${section.title}`}  />
+              </button> 
+            )
+          })}
+        </div>
+      </div>
+    </article>
   )
 }
 
@@ -301,14 +340,17 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
   useEffect(() => {
     function handleKeyDown(event) {
       if (event.key === 'Escape') {
+        event.preventDefault()
         onClose()
       }
 
       if (event.key === 'ArrowLeft') {
+        event.preventDefault()
         onSelect((value) => (value - 1 + items.length) % items.length)
       }
 
       if (event.key === 'ArrowRight') {
+        event.preventDefault()
         onSelect((value) => (value + 1) % items.length)
       }
     }
@@ -327,52 +369,36 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
       <div className="gallery-modal-shell" onClick={(event) => event.stopPropagation()}>
         <div className="gallery-modal-head">
           <div>
-            <p className="eyebrow">Gallery viewer</p>
-            <h2>{activeItem.title}</h2>
+            <p className="eyebrow">{activeItem.section}</p>
           </div>
-          <button className="gallery-modal-close" type="button" onClick={onClose}>
-            Close
+          <button className="gallery-modal-close" type="button" onClick={onClose} aria-label="Close gallery viewer">
+            <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div className="gallery-modal-layout">
-          <div className="gallery-modal-thumb-grid" aria-label="Gallery thumbnails">
-            {items.map((item, index) => (
-              <button
-                key={item.title}
-                type="button"
-                className={index === activeIndex ? 'gallery-thumb is-active' : 'gallery-thumb'}
-                onClick={() => onSelect(index)}
-                aria-label={`View ${item.title}`}
-                aria-pressed={index === activeIndex}
-              >
-                <img src={item.image} alt="" loading="lazy" />
-                <span>{item.title}</span>
-              </button>
-            ))}
-          </div>
-          <div className="gallery-modal-viewer">
-            <button
-              type="button"
-              className="gallery-modal-arrow gallery-modal-arrow-left"
-              onClick={() => onSelect((value) => (value - 1 + items.length) % items.length)}
-              aria-label="Previous image"
-            >
-              <span aria-hidden="true">←</span>
-            </button>
-            <figure key={activeItem.image} className="gallery-modal-figure reveal">
-              <img src={activeItem.image} alt={`${activeItem.title} at Bodhi School`} />
-              <figcaption>{activeItem.title}</figcaption>
-            </figure>
-            <button
-              type="button"
-              className="gallery-modal-arrow gallery-modal-arrow-right"
-              onClick={() => onSelect((value) => (value + 1) % items.length)}
-              aria-label="Next image"
-            >
-              <span aria-hidden="true">→</span>
-            </button>
-          </div>
+        <div className="gallery-modal-viewer">
+          <button
+            type="button"
+            className="gallery-modal-arrow gallery-modal-arrow-left"
+            onClick={() => onSelect((value) => (value - 1 + items.length) % items.length)}
+            aria-label="Previous image"
+          >
+            <span aria-hidden="true">←</span>
+          </button>
+          <figure key={activeItem.image} className="gallery-modal-figure reveal">
+            <img src={activeItem.image} alt={`${activeItem.section}`} />
+          </figure>
+          <button
+            type="button"
+            className="gallery-modal-arrow gallery-modal-arrow-right"
+            onClick={() => onSelect((value) => (value + 1) % items.length)}
+            aria-label="Next image"
+          >
+            <span aria-hidden="true">→</span>
+          </button>
         </div>
+        <p className="gallery-modal-counter" aria-live="polite">
+          {activeIndex + 1} of {items.length}
+        </p>
       </div>
     </div>
   )

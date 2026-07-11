@@ -10,7 +10,13 @@ export function Seo({ title, description }) {
 }
 
 export function ArrowIcon() {
-  return <span aria-hidden="true">↗</span>
+  return (
+    <span className="arrow-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  )
 }
 
 export function ButtonLink({ to, children, secondary = false }) {
