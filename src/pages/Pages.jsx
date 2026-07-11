@@ -324,7 +324,7 @@ function GallerySectionRow({ section, sectionIndex, onOpen }) {
                 onClick={() => onOpen(sectionIndex, photoIndex)}
                 aria-label={`Open ${section.title}`}
               >
-                <img src={photo.image} alt={`${section.title}`}  />
+                <img src={photo.image} alt={`${section.title}`} loading='lazy' />
               </button> 
             )
           })}
