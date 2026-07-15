@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-// import logo from '../assets/Bodhi Logo Small.png'
 import footerLogo from '../assets/Bodhi Logo Big Footer.png'
+import facebookLogo from '../assets/Facebook_Logo_Secondary.png'
+import instagramLogo from '../assets/Instagram_Glyph_White.svg'
+import whatsappLogo from '../assets/Whatsapp white.svg'
 import { navItems } from '../data/content'
 
 function Header() {
@@ -92,9 +94,16 @@ function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} Bodhi School</span>
-        <div>
-          <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer">Facebook </a>
-          <a href="https://www.instagram.com/_bodhischool_/" target="_blank" rel="noreferrer"> Instagram</a>
+        <div className="social-links">
+          <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <img className="social-icon" src={facebookLogo} alt="Facebook" />
+          </a>
+          <a href="https://www.instagram.com/_bodhischool_/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <img className="social-icon" src={instagramLogo} alt="Instagram" />
+          </a>
+          <a href="https://wa.me/919388709700?text=Hi%20there%20" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+            <img className="social-icon" src={whatsappLogo} alt="WhatsApp" />
+          </a>
         </div>
       </div>
     </footer>

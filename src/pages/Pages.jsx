@@ -10,6 +10,9 @@ import {
   testimonials,
 } from '../data/content'
 import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, QuoteBlock, SectionHeading, Seo } from '../components/UI'
+import facebookLogo from '../assets/Facebook_Logo_Primary.png'
+import instagramLogo from '../assets/Instagram_Glyph_Gradient.svg'
+import whatsappLogo from '../assets/Whatsapp Green.svg'
 
 const images = {
   home: 'https://images.unsplash.com/photo-1602030028438-4cf153cbae9e?auto=format&fit=crop&w=1400&q=85',
@@ -165,9 +168,9 @@ export function WhyBodhiPage() {
               <li>Emotional strength and confidence</li>
             </ul>
             <p> At Bodhi, we carefully design
-                experiences that nurture these abilities during this important stage.
-                Through the right environment and meaningful learning opportunities, we
-                help children build a strong foundation for lifelong success.</p></div>
+              experiences that nurture these abilities during this important stage.
+              Through the right environment and meaningful learning opportunities, we
+              help children build a strong foundation for lifelong success.</p></div>
         </div>
       </section>
       <section className="section">
@@ -200,7 +203,7 @@ export function AdmissionPage() {
       <PageHero eyebrow="Admission" title="A thoughtful beginning to your child’s Bodhi journey." intro="Our admission process helps families and teachers understand the child, choose the right placement and begin with confidence." image={images.admission}><ButtonLink to="/contact">Plan a school visit</ButtonLink></PageHero>
       <section className="section tinted-section">
         <div className="container split-grid">
-          <SectionHeading eyebrow="Academics"title="Conceptual Learning for a Changing World" />
+          <SectionHeading eyebrow="Academics" title="Conceptual Learning for a Changing World" />
           <div className="prose"><p>At Bodhi, we follow the IGCSE (International General
             Certificate of Secondary Education) curriculum, providing a globally
             recognised and concept-based learning approach.</p>
@@ -325,7 +328,7 @@ function GallerySectionRow({ section, sectionIndex, onOpen }) {
                 aria-label={`Open ${section.title}`}
               >
                 <img src={photo.image} alt={`${section.title}`} loading='lazy' />
-              </button> 
+              </button>
             )
           })}
         </div>
@@ -473,6 +476,18 @@ export function ContactPage() {
             <address>Bodhi Schools<br />PRRAP-21, Puthen Road, Pettah<br />Trivandrum, Kerala 695024</address>
             <a href="tel:+919388709700">+91 938 870 9700</a>
             <a href="mailto:admission@bodhischool.com">admission@bodhischool.com</a>
+            <a>Visit our socials:</a>
+            <div className="social-links">
+              <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <img className="social-icon" src={facebookLogo} alt="Facebook" />
+              </a>
+              <a href="https://www.instagram.com/_bodhischool_/" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <img className="social-icon" src={instagramLogo} alt="Instagram" />
+              </a>
+              <a href="https://wa.me/919388709700?text=Hi%20there%20" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                <img className="social-icon" src={whatsappLogo} alt="WhatsApp" />
+              </a>
+            </div>
             <p className="career-note">Love being around children? Send your resume to <a href="mailto:jobs@bodhischool.com">jobs@bodhischool.com</a>.</p>
           </div>
           <form className="contact-form" onSubmit={handleSubmit}>
