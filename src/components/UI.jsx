@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function Seo({ title, description }) {
@@ -15,6 +15,31 @@ export function ArrowIcon() {
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
+    </span>
+  )
+}
+
+export function PhoneContact({ className = '' }) {
+  const [showOptions, setShowOptions] = useState(false)
+
+  function handleClick(event) {
+    if (window.matchMedia('(max-width: 780px)').matches) {
+      event.preventDefault()
+      setShowOptions((value) => !value)
+    }
+  }
+
+  return (
+    <span className={className ? `phone-contact ${className}` : 'phone-contact'}>
+      <a className="phone-contact-link" href="https://wa.me/919388709700?text=Hi%20there" target="_blank" rel="noreferrer" onClick={handleClick}>
+        +91 938 870 9700
+      </a>
+      {showOptions && (
+        <span className="phone-contact-options">
+          <a href="tel:+919388709700">Call</a>
+          <a href="https://wa.me/919388709700?text=Hi%20there" target="_blank" rel="noreferrer">WhatsApp</a>
+        </span>
+      )}
     </span>
   )
 }

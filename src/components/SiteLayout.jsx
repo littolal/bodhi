@@ -5,6 +5,7 @@ import facebookLogo from '../assets/Facebook_Logo_Secondary.png'
 import instagramLogo from '../assets/Instagram_Glyph_White.svg'
 import whatsappLogo from '../assets/Whatsapp white.svg'
 import { navItems } from '../data/content'
+import { PhoneContact } from './UI'
 
 function Header() {
   const [open, setOpen] = useState(false)
@@ -66,7 +67,7 @@ function Header() {
             </NavLink>
           ))}
         </nav>
-        <a className="header-call" href="tel:+919388709700">+91 938 870 9700</a>
+        <PhoneContact className="header-call" />
       </div>
     </header>
   )
@@ -101,7 +102,7 @@ function Footer() {
           <a href="https://www.instagram.com/_bodhischool_/" target="_blank" rel="noreferrer" aria-label="Instagram">
             <img className="social-icon" src={instagramLogo} alt="Instagram" />
           </a>
-          <a href="https://wa.me/919388709700?text=Hi%20there%20" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+          <a href="https://wa.me/919388709700?text=Hi%20there" target="_blank" rel="noreferrer" aria-label="WhatsApp">
             <img className="social-icon" src={whatsappLogo} alt="WhatsApp" />
           </a>
         </div>

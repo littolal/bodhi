@@ -459,11 +459,36 @@ function GalleryModal({ items, activeIndex, onClose, onSelect }) {
 }
 
 export function ContactPage() {
-  const [sent, setSent] = useState(false)
   function handleSubmit(event) {
     event.preventDefault()
-    setSent(true)
-    event.currentTarget.reset()
+    const formData = new FormData(event.currentTarget)
+    const message = `
+    Dear Admissions Team,
+
+    I would like to enquire about admission to Bodhi School for my child. Please find the details below:
+
+    Student Name: ${formData.get('student')}
+    Age: ${formData.get('age')}
+    Class Seeking Admission: ${formData.get('class')}
+
+    Parent/Guardian Name: ${formData.get('parent')}
+    Email Address: ${formData.get('email')}
+    Mobile Number: ${formData.get('phone')}
+
+    Enquiry:
+    ${formData.get('message')}
+
+    Kindly review the above information and let me know the admission process, eligibility, and any further steps required.
+    Thank you for your time and assistance. I look forward to your response.
+
+  Regards,
+  ${formData.get('parent')}
+  `.trim();
+
+    const whatsappWindow = window.open(`https://wa.me/919388709700?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
+    if (whatsappWindow) {
+      whatsappWindow.opener = null
+    }
   }
   return (
     <>
@@ -474,18 +499,18 @@ export function ContactPage() {
           <div className="contact-details">
             <p className="eyebrow">Visit or reach us</p><h2>We’d be happy to hear from you.</h2>
             <address>Bodhi Schools<br />PRRAP-21, Puthen Road, Pettah<br />Trivandrum, Kerala 695024</address>
-            <a href="tel:+919388709700">+91 938 870 9700</a>
+            <PhoneContact />
             <a href="mailto:admission@bodhischool.com">admission@bodhischool.com</a>
             <a>Visit our socials:</a>
             <div className="social-links">
               <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer" aria-label="Facebook">
-                <img className="social-icon" src={facebookLogo} alt="Facebook" />
+                <img className="social-icon" src={facebookLogo} alt="Facebook" loading="lazy"/>
               </a>
               <a href="https://www.instagram.com/_bodhischool_/" target="_blank" rel="noreferrer" aria-label="Instagram">
-                <img className="social-icon" src={instagramLogo} alt="Instagram" />
+                <img className="social-icon" src={instagramLogo} alt="Instagram" loading="lazy"/>
               </a>
-              <a href="https://wa.me/919388709700?text=Hi%20there%20" target="_blank" rel="noreferrer" aria-label="WhatsApp">
-                <img className="social-icon" src={whatsappLogo} alt="WhatsApp" />
+              <a href="https://wa.me/919388709700?text=Hi%20there" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                <img className="social-icon" src={whatsappLogo} alt="WhatsApp" loading="lazy"/>
               </a>
             </div>
             <p className="career-note">Love being around children? Send your resume to <a href="mailto:jobs@bodhischool.com">jobs@bodhischool.com</a>.</p>
@@ -497,7 +522,6 @@ export function ContactPage() {
             <div className="form-row"><div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" required /></div><div className="field"><label htmlFor="phone">Mobile number</label><input id="phone" name="phone" type="tel" required /></div></div>
             <div className="field"><label htmlFor="message">Your enquiry</label><textarea id="message" name="message" rows="4" required /></div>
             <button className="button" type="submit">Send enquiry <ArrowIcon /></button>
-            {sent && <p className="form-success" role="status">Thank you. This demo form is ready to connect to your final enquiry service.</p>}
           </form>
         </div>
       </section>
