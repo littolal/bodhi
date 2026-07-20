@@ -47,6 +47,12 @@ p { max-width: 68ch; }
 .primary-nav a::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: var(--orange); transition: right .3s ease; }
 .primary-nav a:hover::after, .primary-nav a.active::after { right: 0; }
 .header-call { padding-left: 24px; border-left: 1px solid var(--line); color: var(--bark); font-size: 1.2rem; font-weight: 600; text-decoration: none; }
+.phone-contact { position: relative; display: inline-flex; align-items: center; gap: 10px; }
+.phone-contact-link { color: inherit; font: inherit; font-weight: inherit; text-decoration: none; }
+.phone-contact-options { position: absolute; z-index: 20; top: calc(100% + 8px); left: 0; display: grid; min-width: 150px; overflow: hidden; border: 1px solid var(--line); background: var(--paper); box-shadow: 0 16px 34px rgba(38, 41, 24, .16); }
+.phone-contact-options a { padding: 10px 14px; color: var(--bark); font-size: .95rem; font-weight: 600; text-decoration: none; }
+.phone-contact-options a + a { border-top: 1px solid var(--line); }
+.phone-contact-options a:hover { background: var(--cream); }
 .menu-toggle { display: none; position: relative; width: 44px; height: 44px; border: 0; background: none; }
 .menu-toggle-bar { position: absolute; left: 9px; right: 9px; height: 2px; background: var(--ink); transition: transform .25s ease, opacity .25s ease, top .25s ease, bottom .25s ease; }
 .menu-toggle-bar:nth-of-type(1) { top: 12px; }
@@ -191,6 +197,7 @@ p { max-width: 68ch; }
 .contact-details h2 { margin-bottom: 20px; }
 .contact-details address { margin: 10px 0 10px; font-style: normal; font-size: 1.1rem; }
 .contact-details > a { margin-bottom: 5px; color: var(--bark); font-weight: 600; font-size: 1.1rem; text-decoration: none; }
+.contact-details > .phone-contact { margin-bottom: 5px; color: var(--bark); font-size: 1.1rem; font-weight: 600; }
 .contact-details .social-links { margin-top: 10px; gap: 25px; }
 .contact-details .social-icon { height: 25px; width: 25px; object-fit: contain }
 .career-note { margin-top: 45px; padding-top: 25px; border-top: 1px solid var(--line); font-size: 1.3rem; }
@@ -200,7 +207,6 @@ p { max-width: 68ch; }
 .field label { display: block; margin-bottom: 7px; font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .field input, .field textarea { width: 100%; padding: 13px 0; border: 0; border-bottom: 1px solid rgba(38,41,24,.45); border-radius: 0; outline: 0; background: transparent; }
 .field input:focus, .field textarea:focus { border-bottom-color: var(--orange); box-shadow: 0 2px 0 var(--orange); }
-.form-success { margin: 20px 0 0; color: var(--leaf); font-weight: 600; }
 .map-wrap { height: 480px; }
 .map-wrap iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(.9) sepia(.12); }
 
