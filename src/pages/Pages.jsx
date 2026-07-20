@@ -9,7 +9,7 @@ import {
   strengths,
   testimonials,
 } from '../data/content'
-import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, QuoteBlock, SectionHeading, Seo } from '../components/UI'
+import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, QuoteBlock, SectionHeading, Seo } from '../components/UI'
 import facebookLogo from '../assets/Facebook_Logo_Primary.png'
 import instagramLogo from '../assets/Instagram_Glyph_Gradient.svg'
 import whatsappLogo from '../assets/Whatsapp Green.svg'
