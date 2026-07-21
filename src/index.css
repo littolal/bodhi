@@ -275,11 +275,8 @@ p { max-width: 68ch; }
   .person-initial { width: 85px; height: 105px; font-size: 1.8rem; }
   .editorial-grid article:nth-child(2) { margin-top: 30px; }
   .gallery-section-head { align-items: start; flex-direction: column; }
-  .gallery-marquee-card { width: clamp(220px, 48vw, 320px); }
-  .gallery-marquee-card img { height: 280px; }
-  .gallery-modal-viewer { grid-template-columns: 1fr; }
-  .gallery-modal-arrow { display: none; }
-  .gallery-modal-figure img { max-height: 56vh; }
+  .expandable-gallery-control { display: none; }
+  .expandable-gallery-modal { padding: 28px 20px; }
   .callout-inner { align-items: flex-start; flex-direction: column; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid > div:first-child { grid-column: 1 / -1; }
@@ -298,15 +295,6 @@ p { max-width: 68ch; }
   .person-card { grid-template-columns: 1fr; }
   .age-row { grid-template-columns: 110px 1fr; gap: 15px; }
   .contact-form { padding: 27px 20px; }
-  .gallery-sections { gap: 42px; }
-  .gallery-marquee-card { width: 76vw; }
-  .gallery-marquee-card img { height: 250px; }
-  .gallery-section-copy { font-size: .95rem; }
-  .gallery-modal-shell { padding: 18px; }
-  .gallery-modal-head { align-items: start; }
-  .gallery-modal-figure figcaption { flex-direction: column; gap: 6px; }
-  .gallery-modal-figure figcaption strong { font-size: 1.2rem; }
-  .gallery-modal-counter { font-size: .82rem; }
   .testimonial-carousel { --testimonial-visible: 1.4; --testimonial-card-height: 210px; }
   .footer-grid > div:first-child { grid-column: auto; }
   .footer-bottom { gap: 20px; }
