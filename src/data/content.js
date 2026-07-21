@@ -83,15 +83,15 @@ export const facilities = [
 
 export const gallerySections = [
   {
-    title: 'Annual Day',
+    title: 'Glimpses of Bodhi',
     photos: [
       { image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1200&q=80' },
       { image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80' },
       { image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80' },
+      {image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80' },
     ],
   },
   {
-    title: 'Sports Day',
     photos: [
       {image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80' },
       { image: 'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80' },
@@ -99,7 +99,6 @@ export const gallerySections = [
     ],
   },
   {
-    title: 'Field Visits',
     photos: [
       { image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80' },
       { image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80' },
@@ -107,7 +106,6 @@ export const gallerySections = [
     ],
   },
   {
-    title: 'Picnic & Outings',
     photos: [
       { image: 'https://images.unsplash.com/photo-1526634332515-d56c5fd16991?auto=format&fit=crop&w=1200&q=80' },
       { image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=80' },

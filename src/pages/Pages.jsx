@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   admissionSteps,
@@ -10,6 +9,7 @@ import {
   testimonials,
 } from '../data/content'
 import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, QuoteBlock, SectionHeading, Seo } from '../components/UI'
+import { ExpandableGallery } from '../components/ui/GalleryAnimation'
 import facebookLogo from '../assets/Facebook_Logo_Primary.png'
 import instagramLogo from '../assets/Instagram_Glyph_Gradient.svg'
 import whatsappLogo from '../assets/Whatsapp Green.svg'
@@ -257,204 +257,14 @@ export function FacilitiesPage() {
 }
 
 export function GalleryPage() {
-  const [activeSectionIndex, setActiveSectionIndex] = useState(null)
-  const [activePhotoIndex, setActivePhotoIndex] = useState(0)
-  const isOpen = activeSectionIndex !== null
-  const activeSection = isOpen ? gallerySections[activeSectionIndex] : null
-  const galleryItems = activeSection?.photos.map((photo) => ({
-    section: activeSection.title,
-    image: photo.image,
-  })) ?? []
-
-  function openModal(sectionIndex, photoIndex) {
-    setActiveSectionIndex(sectionIndex)
-    setActivePhotoIndex(photoIndex)
-  }
-
-  function closeModal() {
-    setActiveSectionIndex(null)
-  }
-
   return (
     <>
       <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." />
       <PageHero eyebrow="Gallery" title="School life, in all its colour." intro="A glimpse of children learning, moving, making and celebrating together." image={images.gallery} />
       <section className="section">
-        <div className="container gallery-sections">
-          {gallerySections.map((section, index) => {
-            return (
-              <GallerySectionRow
-                key={section.title}
-                sectionIndex={index}
-                section={section}
-                onOpen={openModal}
-              />
-            )
-          })}
-        </div>
+        <ExpandableGallery sections={gallerySections} className="container" />
       </section>
-      {isOpen && (
-        <GalleryModal
-          items={galleryItems}
-          activeIndex={activePhotoIndex}
-          onClose={closeModal}
-          onSelect={setActivePhotoIndex}
-        />
-      )}
     </>
-  )
-}
-
-function GallerySectionRow({ section, sectionIndex, onOpen }) {
-  const trackItems = [...section.photos, ...section.photos]
-
-  return (
-    <article className="gallery-section">
-      <div className="gallery-section-head">
-        <div>
-          <h2>{section.title}</h2>
-        </div>
-      </div>
-      <div className="gallery-marquee" aria-label={`${section.title} gallery`}>
-        <div className="gallery-marquee-track">
-          {trackItems.map((photo, index) => {
-            const photoIndex = index % section.photos.length
-            return (
-              <button
-                key={`${section.title}-${index}`}
-                type="button"
-                className="gallery-marquee-card"
-                onClick={() => onOpen(sectionIndex, photoIndex)}
-                aria-label={`Open ${section.title}`}
-              >
-                <img src={photo.image} alt={`${section.title}`} loading='lazy' />
-              </button>
-            )
-          })}
-        </div>
-      </div>
-    </article>
-  )
-}
-
-function GalleryModal({ items, activeIndex, onClose, onSelect }) {
-  const activeItem = items[activeIndex]
-  const swipeStartRef = useRef(null)
-
-  useEffect(() => {
-    function handleKeyDown(event) {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        onClose()
-      }
-
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault()
-        onSelect((value) => (value - 1 + items.length) % items.length)
-      }
-
-      if (event.key === 'ArrowRight') {
-        event.preventDefault()
-        onSelect((value) => (value + 1) % items.length)
-      }
-    }
-
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', handleKeyDown)
-    return () => {
-      document.body.style.overflow = previousOverflow
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [items.length, onClose, onSelect])
-
-  function handlePointerDown(event) {
-    event.currentTarget.setPointerCapture(event.pointerId)
-    swipeStartRef.current = {
-      pointerId: event.pointerId,
-      x: event.clientX,
-      y: event.clientY,
-    }
-  }
-
-  function releasePointer(event) {
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId)
-    }
-  }
-
-  function handlePointerUp(event) {
-    const start = swipeStartRef.current
-    swipeStartRef.current = null
-
-    if (!start || start.pointerId !== event.pointerId) {
-      return
-    }
-
-    const deltaX = event.clientX - start.x
-    const deltaY = event.clientY - start.y
-
-    if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
-      releasePointer(event)
-      return
-    }
-
-    if (deltaX < 0) {
-      releasePointer(event)
-      onSelect((value) => (value + 1) % items.length)
-      return
-    }
-
-    releasePointer(event)
-    onSelect((value) => (value - 1 + items.length) % items.length)
-  }
-
-  return (
-    <div className="gallery-modal" role="dialog" aria-modal="true" aria-label="Gallery viewer" onClick={onClose}>
-      <div className="gallery-modal-shell" onClick={(event) => event.stopPropagation()}>
-        <div className="gallery-modal-head">
-          <div>
-            <p className="eyebrow">{activeItem.section}</p>
-          </div>
-          <button className="gallery-modal-close" type="button" onClick={onClose} aria-label="Close gallery viewer">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div className="gallery-modal-viewer">
-          <button
-            type="button"
-            className="gallery-modal-arrow gallery-modal-arrow-left"
-            onClick={() => onSelect((value) => (value - 1 + items.length) % items.length)}
-            aria-label="Previous image"
-          >
-            <span aria-hidden="true">←</span>
-          </button>
-          <figure
-            key={activeItem.image}
-            className="gallery-modal-figure reveal"
-            onPointerDown={handlePointerDown}
-            onPointerUp={handlePointerUp}
-            onPointerCancel={(event) => {
-              swipeStartRef.current = null
-              releasePointer(event)
-            }}
-          >
-            <img src={activeItem.image} alt={`${activeItem.section}`} />
-          </figure>
-          <button
-            type="button"
-            className="gallery-modal-arrow gallery-modal-arrow-right"
-            onClick={() => onSelect((value) => (value + 1) % items.length)}
-            aria-label="Next image"
-          >
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-        <p className="gallery-modal-counter" aria-live="polite">
-          {activeIndex + 1} of {items.length}
-        </p>
-      </div>
-    </div>
   )
 }
 
@@ -498,7 +308,7 @@ export function ContactPage() {
         <div className="container contact-grid">
           <div className="contact-details">
             <p className="eyebrow">Visit or reach us</p><h2>We’d be happy to hear from you.</h2>
-            <address>Bodhi Schools<br />PRRAP-21, Puthen Road, Pettah<br />Trivandrum, Kerala 695024</address>
+            <address>Bodhi School<br />PRRAP-21, Puthen Road, Pettah<br />Trivandrum, Kerala 695024</address>
             <PhoneContact />
             <a href="mailto:admission@bodhischool.com">admission@bodhischool.com</a>
             <a>Visit our socials:</a>
@@ -525,7 +335,7 @@ export function ContactPage() {
           </form>
         </div>
       </section>
-      <section className="map-wrap" aria-label="Bodhi School location"><iframe title="Map showing Bodhi School in Pettah, Trivandrum" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1973.068071456528!2d76.926337!3d8.486141!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb1f77ed44d5%3A0x5a65a44612a1fbde!2sBodhi%20School!5e0!3m2!1sen!2sin!4v1782239629314!5m2!1sen!2sin&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></section>
+      <section className="map-wrap" aria-label="Bodhi School location"><iframe title="Map showing Bodhi School in Pettah, Trivandrum" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.0610788526246!2d76.92434437587146!3d8.49344259154806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb9b254414bd%3A0xa9978280ab53845!2sBodhi%20Kindergarten!5e0!3m2!1sen!2sin!4v1784633642274!5m2!1sen!2sin&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></section>
     </>
   )
 }
