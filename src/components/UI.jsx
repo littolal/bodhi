@@ -102,3 +102,37 @@ export function QuoteBlock({ quote, author }) {
     </blockquote>
   )
 }
+
+export function PoperInstagramWidget() {
+  useEffect(() => {
+    const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
+    const scriptId = 'poper-js-script'
+    const domain = "bodhischool.vercel.app"
+
+    window.Poper = window.Poper || []
+    window.Poper.push({ accountID, domain })
+
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script')
+      script.id = scriptId
+      script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=ms0p16c3`
+      script.defer = true
+      script.setAttribute('data-account-id', accountID)
+      script.setAttribute('data-domain', domain)
+      document.body.appendChild(script)
+    }
+  }, [])
+
+  return (
+    <div className="instagram-widget" aria-label="Latest from Instagram">
+      <div className="instagram-widget-head">
+        <div>
+          <h2>Latest from Instagram</h2>
+        </div>
+      </div>
+      <div className="instagram-widget-card instagram-widget-card-poper">
+        <div className="poper-12711" />
+      </div>
+    </div>
+  )
+}
