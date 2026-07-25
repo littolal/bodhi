@@ -8,7 +8,7 @@ import {
   strengths,
   testimonials,
 } from '../data/content'
-import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, QuoteBlock, SectionHeading, Seo } from '../components/UI'
+import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, PoperInstagramWidget, QuoteBlock, SectionHeading, Seo } from '../components/UI'
 import { ExpandableGallery } from '../components/ui/GalleryAnimation'
 import facebookLogo from '../assets/Facebook_Logo_Primary.png'
 import instagramLogo from '../assets/Instagram_Glyph_Gradient.svg'
@@ -261,6 +261,11 @@ export function GalleryPage() {
     <>
       <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." />
       <PageHero eyebrow="Gallery" title="School life, in all its colour." intro="A glimpse of children learning, moving, making and celebrating together." image={images.gallery} />
+      <section className="section">
+        <div className="container">
+          <PoperInstagramWidget />
+        </div>
+      </section>
       <section className="section">
         <ExpandableGallery sections={gallerySections} className="container" />
       </section>

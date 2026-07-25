@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function Seo({ title, description }) {
@@ -21,6 +21,20 @@ export function ArrowIcon() {
 
 export function PhoneContact({ className = '' }) {
   const [showOptions, setShowOptions] = useState(false)
+    const containerRef = useRef(null)
+
+  useEffect(() => {
+    if (!showOptions) return
+
+    function handlePointerDown(event) {
+      if (!containerRef.current?.contains(event.target)) {
+        setShowOptions(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    return () => document.removeEventListener('mousedown', handlePointerDown)
+  }, [showOptions])
 
   function handleClick(event) {
     if (window.matchMedia('(max-width: 780px)').matches) {
@@ -30,7 +44,7 @@ export function PhoneContact({ className = '' }) {
   }
 
   return (
-    <span className={className ? `phone-contact ${className}` : 'phone-contact'}>
+    <span ref={containerRef} className={className ? `phone-contact ${className}` : 'phone-contact'}>
       <a className="phone-contact-link" href="https://wa.me/919388709700?text=Hi%20there" target="_blank" rel="noreferrer" onClick={handleClick}>
         +91 938 870 9700
       </a>
@@ -100,5 +114,39 @@ export function QuoteBlock({ quote, author }) {
       <p>{quote}</p>
       {author && <cite>{author}</cite>}
     </blockquote>
+  )
+}
+
+export function PoperInstagramWidget() {
+  useEffect(() => {
+    const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
+    const scriptId = 'poper-js-script'
+    const domain = "bodhischool.vercel.app"
+
+    window.Poper = window.Poper || []
+    window.Poper.push({ accountID, domain })
+
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script')
+      script.id = scriptId
+      script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=ms0p16c3`
+      script.defer = true
+      script.setAttribute('data-account-id', accountID)
+      script.setAttribute('data-domain', domain)
+      document.body.appendChild(script)
+    }
+  }, [])
+
+  return (
+    <div className="instagram-widget" aria-label="Latest from Instagram">
+      <div className="instagram-widget-head">
+        <div>
+          <h2>Latest from Instagram</h2>
+        </div>
+      </div>
+      <div className="instagram-widget-card instagram-widget-card-poper">
+        <div className="poper-12711" />
+      </div>
+    </div>
   )
 }
