@@ -187,6 +187,9 @@ p { max-width: 68ch; }
 .gallery-social { background: var(--cream); }
 .text-link { align-self: center; justify-self: end; color: var(--bark); font-size: 1.1rem; font-weight: 600; }
 
+.instagram-widget-shell { position: relative; }
+.instagram-widget-footer-bar { position: absolute; left: 0; right: 0; bottom: 0px; height: 50px; background: var(--paper); z-index: 9; pointer-events: none; }
+
 .contact-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 9vw; }
 .contact-details { display: flex; flex-direction: column; align-items: flex-start; }
 .contact-details h2 { margin-bottom: 20px; }
