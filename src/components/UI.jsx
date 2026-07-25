@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function Seo({ title, description }) {
@@ -21,6 +21,20 @@ export function ArrowIcon() {
 
 export function PhoneContact({ className = '' }) {
   const [showOptions, setShowOptions] = useState(false)
+    const containerRef = useRef(null)
+
+  useEffect(() => {
+    if (!showOptions) return
+
+    function handlePointerDown(event) {
+      if (!containerRef.current?.contains(event.target)) {
+        setShowOptions(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    return () => document.removeEventListener('mousedown', handlePointerDown)
+  }, [showOptions])
 
   function handleClick(event) {
     if (window.matchMedia('(max-width: 780px)').matches) {
@@ -30,7 +44,7 @@ export function PhoneContact({ className = '' }) {
   }
 
   return (
-    <span className={className ? `phone-contact ${className}` : 'phone-contact'}>
+    <span ref={containerRef} className={className ? `phone-contact ${className}` : 'phone-contact'}>
       <a className="phone-contact-link" href="https://wa.me/919388709700?text=Hi%20there" target="_blank" rel="noreferrer" onClick={handleClick}>
         +91 938 870 9700
       </a>
