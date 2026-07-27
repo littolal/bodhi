@@ -311,13 +311,12 @@ p { max-width: 68ch; }
   .gallery-section-head-mobile-hidden { display: none; }
   .expandable-gallery { gap: 28px; }
   .expandable-gallery-row { display: none; }
+
   .mobile-gallery-reel { display: grid; overflow: hidden; margin-inline: calc((100vw - 100%) / -2); padding: 0 0 6px; }
   .mobile-gallery-stage { position: relative; height: clamp(340px, 112vw, 520px); overflow: hidden; }
-  .mobile-gallery-card { position: absolute; top: 0; left: 50%; width: min(76vw, 390px); height: 100%; overflow: hidden; padding: 0; border: 1px solid var(--line); background: var(--cream); box-shadow: 0 16px 30px rgba(38, 41, 24, .12); transition: transform 1s cubic-bezier(.22, 1, .36, 1), opacity .9s cubic-bezier(.22, 1, .36, 1); }
-  .mobile-gallery-card img { width: 100%; height: 100%; object-fit: cover; }
-  .mobile-gallery-card-current { z-index: 2; opacity: 1; transform: translateX(-50%) scale(1); }
-  .mobile-gallery-card-previous { z-index: 1; opacity: .54; transform: translateX(-138%) scale(.9); pointer-events: none; }
-  .mobile-gallery-card-next { z-index: 1; opacity: .54; transform: translateX(38%) scale(.9); pointer-events: none; }
+  .mobile-gallery-card { position: absolute; left: 50%; top: 0; width: min(76vw, 390px); height: 100%; padding: 0; border: 1px solid var(--line); background: var(--cream); overflow: hidden; cursor: pointer; box-shadow: 0 16px 30px rgba(38, 41, 24, 0.12); transition: transform 700ms linear, opacity 700ms linear; will-change: transform, opacity;}
+  .mobile-gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block;}
+  
   .expandable-gallery-control { display: none; }
   .expandable-gallery-modal { padding: 28px 20px; }
   .instagram-widget-card-poper, .poper-12711 { min-height: 720px; }
