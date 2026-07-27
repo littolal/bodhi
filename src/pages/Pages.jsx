@@ -134,7 +134,7 @@ export function AboutPage() {
           <SectionHeading eyebrow="Core team" title="Experience guided by purpose." />
           <div className="people-grid">
             <article className="person-card"><span className="person-initial">JK</span><div><p className="eyebrow">Director</p><h3>Jayan Krishnan</h3><p>With experience in technology, project management and educational administration, he leads financial administration, operations and innovative teaching methods at Bodhi.</p></div></article>
-            <article className="person-card"><span className="person-initial">AD</span><div><p className="eyebrow">Principal</p><h3>Anitha Dorairaj</h3><p>A civil engineer, former technology professional, educator and psychology postgraduate, Anitha brings a rare blend of analytical thought and empathy to primary education.</p></div></article>
+            <article className="person-card"><span className="person-initial">AD</span><div><p className="eyebrow">Principal</p><h3>Anitha Dorairaj</h3><p>A civil engineer, former technology professional, educator, trainer and psychology postgraduate, she brings a rare blend of analytical thought and empathy to primary education.</p></div></article>
           </div>
         </div>
       </section>
@@ -267,7 +267,7 @@ export function GalleryPage() {
           <div className="instagram-widget-footer-bar" aria-hidden="true" />
         </div>
       </section>
-      <section className="section">
+      <section className="gallery-section">
         <ExpandableGallery sections={gallerySections} className="container" />
       </section>
     </>
