@@ -262,13 +262,13 @@ export function GalleryPage() {
       <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." />
       <PageHero eyebrow="Gallery" title="School life, in all its colour." intro="A glimpse of children learning, moving, making and celebrating together." image={images.gallery} />
       <section className="section">
+        <ExpandableGallery sections={gallerySections} className="container" />
+      </section>
+      <section className="gallery-section">
         <div className="container instagram-widget-shell">
           <PoperInstagramWidget />
           <div className="instagram-widget-footer-bar" aria-hidden="true" />
         </div>
-      </section>
-      <section className="gallery-section">
-        <ExpandableGallery sections={gallerySections} className="container" />
       </section>
     </>
   )

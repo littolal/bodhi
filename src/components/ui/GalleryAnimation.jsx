@@ -235,50 +235,60 @@ export function ExpandableGallery({ sections, className = '' }) {
   )
 }
 
-function MobileGalleryReel({ photos, sectionTitle, sectionOffset, onSelect }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const length = photos.length
+
+function MobileGalleryReel({
+  photos,
+  sectionTitle,
+  sectionOffset,
+  onSelect,
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const length = photos.length;
 
   useEffect(() => {
-    if (length < 2) return undefined
+    if (length < 2) return;
 
-    const timer = window.setInterval(() => {
-      setCurrentIndex((value) => (value + 1) % length)
-    }, 2500)
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % length);
+    }, 2500);
 
-    return () => window.clearInterval(timer)
-  }, [length])
+    return () => clearInterval(timer);
+  }, [length]);
 
-  if (length === 0) return null
-
-  const previousIndex = (currentIndex - 1 + length) % length
-  const nextIndex = (currentIndex + 1) % length
-  const visibleSlides = [
-    { index: previousIndex, position: 'previous' },
-    { index: currentIndex, position: 'current' },
-    { index: nextIndex, position: 'next' },
-  ]
+  if (!length) return null;
 
   return (
-    <div className="mobile-gallery-reel" aria-label={`${sectionTitle} mobile gallery`}>
+    <div
+      className="mobile-gallery-reel"
+      aria-label={`${sectionTitle} mobile gallery`}
+    >
       <div className="mobile-gallery-stage">
-        {visibleSlides.map(({ index, position }) => (
-          <button
-            className={`mobile-gallery-card mobile-gallery-card-${position}`}
-            key={`${position}-${photos[index].image}`}
-            type="button"
-            disabled={position !== 'current'}
-            onClick={() => {
-              if (position === 'current') {
-                onSelect(sectionOffset + index)
-              }
-            }}
-            aria-label={position === 'current' ? `Open ${sectionTitle} image ${index + 1}` : `${sectionTitle} image ${index + 1}`}
-          >
-            <img src={photos[index].image} alt="" loading="lazy" />
-          </button>
-        ))}
+        {photos.map((photo, index) => {
+          let offset = index - currentIndex;
+
+          // Infinite loop positioning
+          if (offset > length / 2) offset -= length;
+          if (offset < -length / 2) offset += length;
+
+          return (
+            <button
+              key={photo.image}
+              className="mobile-gallery-card"
+              onClick={() => onSelect(sectionOffset + index)}
+              style={{
+                transform: `translateX(calc(-50% + ${
+                  offset * 82
+                }%)) scale(${offset === 0 ? 1 : 0.88})`,
+                opacity: Math.abs(offset) > 1 ? 0 : offset === 0 ? 1 : 0.55,
+                zIndex: 10 - Math.abs(offset),
+              }}
+            >
+              <img src={photo.image} alt="" loading="lazy" />
+            </button>
+          );
+        })}
       </div>
     </div>
-  )
+  );
 }
