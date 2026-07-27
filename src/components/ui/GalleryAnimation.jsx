@@ -109,13 +109,14 @@ export function ExpandableGallery({ sections, className = '' }) {
         const sectionOffset = sections
           .slice(0, sectionIndex)
           .reduce((total, item) => total + item.photos.length, 0)
+        const sectionTitle = section.title || 'Glimpses of Bodhi'
 
         return (
-          <article className="expandable-gallery-section" key={section.title}>
-            <div className="gallery-section-head">
-              <h2>{section.title}</h2>
+          <article className="expandable-gallery-section" key={`${sectionTitle}-${sectionIndex}`}>
+            <div className={sectionIndex === 0 ? 'gallery-section-head' : 'gallery-section-head gallery-section-head-mobile-hidden'}>
+              <h2>{sectionTitle}</h2>
             </div>
-            <div className="expandable-gallery-row" aria-label={`${section.title} gallery`}>
+            <div className="expandable-gallery-row" aria-label={`${sectionTitle} gallery`}>
               {section.photos.map((photo, photoIndex) => {
                 const imageIndex = sectionOffset + photoIndex
 
@@ -132,9 +133,9 @@ export function ExpandableGallery({ sections, className = '' }) {
                     onMouseEnter={() => setHoveredIndex(imageIndex)}
                     onMouseLeave={() => setHoveredIndex(null)}
                     onClick={() => setSelectedIndex(imageIndex)}
-                    aria-label={`Open ${section.title} image ${photoIndex + 1}`}
+                    aria-label={`Open ${sectionTitle} image ${photoIndex + 1}`}
                   >
-                    <img src={photo.image} alt={`${section.title} ${photoIndex + 1}`} loading="lazy" />
+                    <img src={photo.image} alt={`${sectionTitle} ${photoIndex + 1}`} loading="lazy" />
                     <motion.span
                       aria-hidden="true"
                       className="expandable-gallery-shade"
@@ -146,6 +147,12 @@ export function ExpandableGallery({ sections, className = '' }) {
                 )
               })}
             </div>
+            <MobileGalleryReel
+              photos={section.photos}
+              sectionTitle={sectionTitle}
+              sectionOffset={sectionOffset}
+              onSelect={setSelectedIndex}
+            />
           </article>
         )
       })}
@@ -224,6 +231,54 @@ export function ExpandableGallery({ sections, className = '' }) {
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+  )
+}
+
+function MobileGalleryReel({ photos, sectionTitle, sectionOffset, onSelect }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const length = photos.length
+
+  useEffect(() => {
+    if (length < 2) return undefined
+
+    const timer = window.setInterval(() => {
+      setCurrentIndex((value) => (value + 1) % length)
+    }, 2500)
+
+    return () => window.clearInterval(timer)
+  }, [length])
+
+  if (length === 0) return null
+
+  const previousIndex = (currentIndex - 1 + length) % length
+  const nextIndex = (currentIndex + 1) % length
+  const visibleSlides = [
+    { index: previousIndex, position: 'previous' },
+    { index: currentIndex, position: 'current' },
+    { index: nextIndex, position: 'next' },
+  ]
+
+  return (
+    <div className="mobile-gallery-reel" aria-label={`${sectionTitle} mobile gallery`}>
+      <div className="mobile-gallery-stage">
+        {visibleSlides.map(({ index, position }) => (
+          <button
+            className={`mobile-gallery-card mobile-gallery-card-${position}`}
+            key={`${position}-${photos[index].image}`}
+            type="button"
+            disabled={position !== 'current'}
+            onClick={() => {
+              if (position === 'current') {
+                onSelect(sectionOffset + index)
+              }
+            }}
+            aria-label={position === 'current' ? `Open ${sectionTitle} image ${index + 1}` : `${sectionTitle} image ${index + 1}`}
+          >
+            <img src={photos[index].image} alt="" loading="lazy" />
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
