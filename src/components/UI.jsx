@@ -118,6 +118,9 @@ export function QuoteBlock({ quote, author }) {
 }
 
 export function PoperInstagramWidget() {
+  const widgetRef = useRef(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+
   useEffect(() => {
     const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
     const scriptId = 'poper-js-script'
@@ -137,6 +140,19 @@ export function PoperInstagramWidget() {
     }
   }, [])
 
+  useEffect(() => {
+    if (!widgetRef.current) return undefined
+
+    const observer = new MutationObserver(() => {
+      if (widgetRef.current?.children.length) {
+        setIsLoaded(true)
+      }
+    })
+
+    observer.observe(widgetRef.current, { childList: true, subtree: true })
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="instagram-widget" aria-label="Latest from Instagram">
       <div className="instagram-widget-head">
@@ -145,7 +161,18 @@ export function PoperInstagramWidget() {
         </div>
       </div>
       <div className="instagram-widget-card instagram-widget-card-poper">
-        <div className="poper-12711" />
+        {!isLoaded && (
+          <div className="instagram-widget-loader" aria-hidden="true">
+            <div className="instagram-loader-head">
+              <span />
+              <div><span /><span /></div>
+            </div>
+            <div className="instagram-loader-grid">
+              {Array.from({ length: 8 }).map((_, index) => <span key={index} />)}
+            </div>
+          </div>
+        )}
+        <div ref={widgetRef} className={isLoaded ? 'poper-12711 is-loaded' : 'poper-12711'} />
       </div>
     </div>
   )
