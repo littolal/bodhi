@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import footerLogo from '../assets/Bodhi Logo Big Footer.png'
-import facebookLogo from '../assets/Facebook_Logo_Secondary.png'
+import footerLogo from '../assets/Bodhi Logo Big Footer.webp'
+import facebookLogo from '../assets/Facebook_Logo_Secondary.webp'
 import instagramLogo from '../assets/Instagram_Glyph_White.svg'
 import whatsappLogo from '../assets/Whatsapp white.svg'
 import { navItems } from '../data/content'
@@ -45,7 +45,7 @@ function Header() {
     <header className="site-header" ref={headerRef}>
       <div className="container header-inner">
         <Link className="brand" to="/" aria-label="Bodhi School home">
-          <img src={footerLogo} alt="Bodhi School" />
+          <img src={footerLogo} alt="Bodhi School" width={900} height={219} decoding="async" />
         </Link>
         <button
           ref={toggleRef}
@@ -123,7 +123,9 @@ export function SiteLayout() {
       <a className="skip-link" href="#main-content">Skip to content</a>
       <Header />
       <main id="main-content">
-        <Outlet />
+        <Suspense fallback={<div className="route-fallback" role="status" aria-live="polite">Loading…</div>}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </>

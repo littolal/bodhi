@@ -1,17 +1,3 @@
-import gallery01 from '../assets/Photos/IMG_8849.webp'
-import gallery02 from '../assets/Photos/IMG_0025.webp'
-import gallery03 from '../assets/Photos/IMG_0236.webp'
-import gallery04 from '../assets/Photos/IMG_0277.webp'
-import gallery05 from '../assets/Photos/IMG_0304.webp'
-import gallery06 from '../assets/Photos/IMG_0408.webp'
-import gallery07 from '../assets/Photos/IMG_0371.webp'
-import gallery08 from '../assets/Photos/IMG_0509.webp'
-import gallery09 from '../assets/Photos/IMG_0549.webp'
-import gallery10 from '../assets/Photos/IMG_9582.webp'
-import gallery11 from '../assets/Photos/IMG_9720.webp'
-import gallery12 from '../assets/Photos/IMG_1148.webp'
-import gallery13 from '../assets/Photos/IMG_1145.webp'
-
 export const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About us', to: '/about' },
@@ -29,7 +15,7 @@ export const specialties = [
   { number: '04', title: 'Kalari', text: 'We proudly offer training in the traditional martial art of Kalaripayattu. This ancient practice helps improve strength, flexibility, focus, and self-discipline while connecting children to cultural roots.' },
   { number: '05', title: 'Developmental Drama', text: 'Our structured drama and communication program helps students develop confidence, creativity, communication skills, and emotional expression through engaging, interactive experiences.' },
   { number: '06', title: 'Finance Funda', text: 'Our Finance Funda sessions introduce children to basic financial literacy—helping them understand money, saving, and responsible decision-making from an early age.' },
-  { number: '07', title: 'Speak to Lead', text: 'This program focuses on building communication, public speaking, and leadership skills while fostering emotional resilience, a positive outlook, and informed decision-making—empowering students to express themselves clearly and confidently in any situation.' }
+  { number: '07', title: 'Speak to Lead', text: 'This program focuses on building communication, public speaking, and leadership skills while fostering emotional resilience, a positive outlook, and informed decision-making—empowering students to express themselves clearly and confidently in any situation.' },
 ]
 
 export const testimonials = [
@@ -51,7 +37,7 @@ export const testimonials = [
   },
   {
     quote: 'Selecting the right school is one of the most significant decisions a parent can make. As my eldest daughter completes her 10th-grade journey at Bodhi School, I want to express my sincere gratitude for the remarkable experience we have had. Bodhi School provides much more than just an education; it offers a safe, nurturing environment where children are taught to lead with values and integrity. I have been particularly impressed by the school’s commitment to individual growth. Through a wide range of opportunities, my daughter was encouraged to explore her unique talents and build the confidence to express herself authentically. What truly sets Bodhi apart is the personalised attention from the faculty. I am deeply grateful to the entire Bodhi community',
-    name: 'Dr. Meera Babu - Parents of Akshit Abhilash of Grade IX and Advika Abhilash (Grade X alumna)'
+    name: 'Dr. Meera Babu - Parents of Akshit Abhilash of Grade IX and Advika Abhilash (Grade X alumna)',
   },
 ]
 
@@ -93,37 +79,4 @@ export const facilities = [
   { title: 'Health & safety', text: 'Yearly physical and dental examinations, secure storage and government-approved transport with GPS.' },
   { title: 'Creative confidence', text: 'Drama, robotics, brain-booster games and opportunities to participate in events beyond school.' },
   { title: 'Life beyond lessons', text: 'Cooking, stitching, personal chores, educational field trips and an annual picnic.' },
-]
-
-export const gallerySections = [
-  {
-    title: 'Glimpses of Bodhi',
-    photos: [
-      { image: gallery01 },
-      { image: gallery02 },
-      { image: gallery03 },
-      { image: gallery04 },
-    ],
-  },
-  {
-    photos: [
-      { image: gallery05 },
-      { image: gallery06 },
-      { image: gallery07 },
-    ],
-  },
-  {
-    photos: [
-      { image: gallery08 },
-      { image: gallery09 },
-      { image: gallery10 },
-    ],
-  },
-  {
-    photos: [
-      { image: gallery11 },
-      { image: gallery12 },
-      { image: gallery13 },
-    ],
-  },
 ]

@@ -74,7 +74,14 @@ export function PageHero({ eyebrow, title, intro, image, children }) {
         </div>
         {image && (
           <div className="hero-image-wrap reveal reveal-delay">
-            <img src={image} alt="" />
+            <img
+              src={image}
+              alt=""
+              width={1600}
+              height={1950}
+              decoding="async"
+              fetchPriority="high"
+            />
             <span className="image-orbit" aria-hidden="true" />
           </div>
         )}
@@ -117,31 +124,61 @@ export function QuoteBlock({ quote, author }) {
   )
 }
 
+function loadPoperScript() {
+  const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
+  const scriptId = 'poper-js-script'
+  const domain = 'bodhischool.vercel.app'
+
+  window.Poper = window.Poper || []
+  window.Poper.push({ accountID, domain })
+
+  if (document.getElementById(scriptId)) return
+
+  const script = document.createElement('script')
+  script.id = scriptId
+  script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=ms0p16c3`
+  script.defer = true
+  script.setAttribute('data-account-id', accountID)
+  script.setAttribute('data-domain', domain)
+  document.body.appendChild(script)
+}
+
 export function PoperInstagramWidget() {
+  const shellRef = useRef(null)
   const widgetRef = useRef(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
-    const scriptId = 'poper-js-script'
-    const domain = "bodhischool.vercel.app"
+    const node = shellRef.current
+    if (!node || shouldLoad) return undefined
 
-    window.Poper = window.Poper || []
-    window.Poper.push({ accountID, domain })
-
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script')
-      script.id = scriptId
-      script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=ms0p16c3`
-      script.defer = true
-      script.setAttribute('data-account-id', accountID)
-      script.setAttribute('data-domain', domain)
-      document.body.appendChild(script)
+    if (!('IntersectionObserver' in window)) {
+      setShouldLoad(true)
+      return undefined
     }
-  }, [])
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '240px 0px' },
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [shouldLoad])
 
   useEffect(() => {
-    if (!widgetRef.current) return undefined
+    if (!shouldLoad) return
+    loadPoperScript()
+  }, [shouldLoad])
+
+  useEffect(() => {
+    if (!shouldLoad || !widgetRef.current) return undefined
 
     const observer = new MutationObserver(() => {
       if (widgetRef.current?.children.length) {
@@ -151,10 +188,10 @@ export function PoperInstagramWidget() {
 
     observer.observe(widgetRef.current, { childList: true, subtree: true })
     return () => observer.disconnect()
-  }, [])
+  }, [shouldLoad])
 
   return (
-    <div className="instagram-widget" aria-label="Latest from Instagram">
+    <div ref={shellRef} className="instagram-widget" aria-label="Latest from Instagram">
       <div className="instagram-widget-head">
         <div>
           <h2>Latest from Instagram</h2>
@@ -172,7 +209,9 @@ export function PoperInstagramWidget() {
             </div>
           </div>
         )}
-        <div ref={widgetRef} className={isLoaded ? 'poper-12711 is-loaded' : 'poper-12711'} />
+        {shouldLoad && (
+          <div ref={widgetRef} className={isLoaded ? 'poper-12711 is-loaded' : 'poper-12711'} />
+        )}
       </div>
     </div>
   )

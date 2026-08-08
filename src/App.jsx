@@ -1,14 +1,14 @@
+import { lazy } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { SiteLayout } from './components/SiteLayout'
-import {
-  AboutPage,
-  AdmissionPage,
-  ContactPage,
-  FacilitiesPage,
-  GalleryPage,
-  HomePage,
-  WhyBodhiPage,
-} from './pages/Pages'
+
+const HomePage = lazy(() => import('./pages/HomePage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const WhyBodhiPage = lazy(() => import('./pages/WhyBodhiPage'))
+const AdmissionPage = lazy(() => import('./pages/AdmissionPage'))
+const FacilitiesPage = lazy(() => import('./pages/FacilitiesPage'))
+const GalleryPage = lazy(() => import('./pages/GalleryPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
 
 function App() {
   return (
