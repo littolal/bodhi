@@ -163,6 +163,7 @@ p { max-width: 68ch; }
 .facility-band-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 9vw; }
 .facility-band span { color: #dfe9b4; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; }
 .facility-band p { font-size: 1.3rem; }
+
 .expandable-gallery { display: grid; gap: 0px; }
 .expandable-gallery-section { display: grid; gap: 18px; }
 .gallery-section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; }

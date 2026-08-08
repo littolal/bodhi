@@ -1,3 +1,17 @@
+import gallery01 from '../assets/Photos/IMG_8849.webp'
+import gallery02 from '../assets/Photos/IMG_0025.webp'
+import gallery03 from '../assets/Photos/IMG_0236.webp'
+import gallery04 from '../assets/Photos/IMG_0277.webp'
+import gallery05 from '../assets/Photos/IMG_0304.webp'
+import gallery06 from '../assets/Photos/IMG_0408.webp'
+import gallery07 from '../assets/Photos/IMG_0371.webp'
+import gallery08 from '../assets/Photos/IMG_0509.webp'
+import gallery09 from '../assets/Photos/IMG_0549.webp'
+import gallery10 from '../assets/Photos/IMG_9582.webp'
+import gallery11 from '../assets/Photos/IMG_9720.webp'
+import gallery12 from '../assets/Photos/IMG_1148.webp'
+import gallery13 from '../assets/Photos/IMG_1145.webp'
+
 export const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About us', to: '/about' },
@@ -85,31 +99,31 @@ export const gallerySections = [
   {
     title: 'Glimpses of Bodhi',
     photos: [
-      { image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80' },
-      {image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80' },
+      { image: gallery01 },
+      { image: gallery02 },
+      { image: gallery03 },
+      { image: gallery04 },
     ],
   },
   {
     photos: [
-      {image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80' },
+      { image: gallery05 },
+      { image: gallery06 },
+      { image: gallery07 },
     ],
   },
   {
     photos: [
-      { image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80' },
+      { image: gallery08 },
+      { image: gallery09 },
+      { image: gallery10 },
     ],
   },
   {
     photos: [
-      { image: 'https://images.unsplash.com/photo-1526634332515-d56c5fd16991?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=80' },
-      { image: 'https://images.unsplash.com/photo-1501696461415-6bd6660c6742?auto=format&fit=crop&w=1200&q=80' },
+      { image: gallery11 },
+      { image: gallery12 },
+      { image: gallery13 },
     ],
   },
 ]

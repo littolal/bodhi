@@ -14,14 +14,22 @@ import facebookLogo from '../assets/Facebook_Logo_Primary.png'
 import instagramLogo from '../assets/Instagram_Glyph_Gradient.svg'
 import whatsappLogo from '../assets/Whatsapp Green.svg'
 
+import homeHero from '../assets/Photos/hero/IMG_0332.webp'
+import aboutHero from '../assets/Photos/hero/IMG_9776.webp'
+import admissionHero from '../assets/Photos/hero/IMG_0183.webp'
+import whyHero from '../assets/Photos/hero/IMG_0099.webp'
+import facilitiesHero from '../assets/Photos/hero/IMG_8863.webp'
+import galleryHero from '../assets/Photos/hero/IMG_0440.webp'
+import contactHero from '../assets/Photos/hero/IMG_9875.webp'
+
 const images = {
-  home: 'https://images.unsplash.com/photo-1602030028438-4cf153cbae9e?auto=format&fit=crop&w=1400&q=85',
-  about: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=1200&q=85',
-  why: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=1200&q=85',
-  admission: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85',
-  facilities: 'https://images.unsplash.com/photo-1560785496-3c9d27877182?auto=format&fit=crop&w=1200&q=85',
-  gallery: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=1200&q=85',
-  contact: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80??auto=format&fit=crop&w=1200&q=85',
+  home: homeHero,
+  about: aboutHero,
+  admission: admissionHero,
+  why: whyHero,
+  facilities: facilitiesHero,
+  gallery: galleryHero,
+  contact: contactHero,
 }
 
 export function HomePage() {
