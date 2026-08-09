@@ -125,14 +125,13 @@ export function PoperInstagramWidget() {
     const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
     const scriptId = 'poper-js-script'
     const domain = "bodhischool.vercel.app"
-
     window.Poper = window.Poper || []
     window.Poper.push({ accountID, domain })
 
     if (!document.getElementById(scriptId)) {
       const script = document.createElement('script')
       script.id = scriptId
-      script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=ms0p16c3`
+      script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=msm1bwnm`
       script.defer = true
       script.setAttribute('data-account-id', accountID)
       script.setAttribute('data-domain', domain)
