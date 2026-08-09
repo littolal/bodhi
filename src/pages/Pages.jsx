@@ -10,8 +10,8 @@ import {
 } from '../data/content'
 import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, PoperInstagramWidget, QuoteBlock, SectionHeading, Seo } from '../components/UI'
 import { ExpandableGallery } from '../components/ui/GalleryAnimation'
-import facebookLogo from '../assets/Facebook_Logo_Primary.png'
-import instagramLogo from '../assets/Instagram_Glyph_Gradient.svg'
+import facebookLogo from '../assets/Facebook_Logo_Primary.webp'
+import instagramLogo from '../assets/Instagram_Glyph_Gradient.webp'
 import whatsappLogo from '../assets/Whatsapp Green.svg'
 
 import homeHero from '../assets/Photos/hero/IMG_0332.webp'

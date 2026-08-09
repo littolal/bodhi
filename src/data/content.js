@@ -47,7 +47,7 @@ export const testimonials = [
   },
   {
     quote: 'We are happy with our experience at Bodhi School. Both our kids, Isha and Jiya have shown remarkable progress since joining, and we are satisfied to see how much Bodhi is contributing to their overall development. The environment and the teachers’ dedication have indeed helped them grow both academically and personally. Heartfelt thanks to the Bodhi family.',
-    name: 'Dr. Hima - Parents of Isha H of Grade V and Jiya H of Grade I',
+    name: 'Dr. Hima - Parents of Isha H of Grade VI and Jiya H of Grade II',
   },
   {
     quote: 'Selecting the right school is one of the most significant decisions a parent can make. As my eldest daughter completes her 10th-grade journey at Bodhi School, I want to express my sincere gratitude for the remarkable experience we have had. Bodhi School provides much more than just an education; it offers a safe, nurturing environment where children are taught to lead with values and integrity. I have been particularly impressed by the school’s commitment to individual growth. Through a wide range of opportunities, my daughter was encouraged to explore her unique talents and build the confidence to express herself authentically. What truly sets Bodhi apart is the personalised attention from the faculty. I am deeply grateful to the entire Bodhi community',
