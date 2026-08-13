@@ -29,7 +29,8 @@ export const specialties = [
   { number: '04', title: 'Kalari', text: 'We proudly offer training in the traditional martial art of Kalaripayattu. This ancient practice helps improve strength, flexibility, focus, and self-discipline while connecting children to cultural roots.' },
   { number: '05', title: 'Developmental Drama', text: 'Our structured drama and communication program helps students develop confidence, creativity, communication skills, and emotional expression through engaging, interactive experiences.' },
   { number: '06', title: 'Finance Funda', text: 'Our Finance Funda sessions introduce children to basic financial literacy—helping them understand money, saving, and responsible decision-making from an early age.' },
-  { number: '07', title: 'Speak to Lead', text: 'This program focuses on building communication, public speaking, and leadership skills while fostering emotional resilience, a positive outlook, and informed decision-making—empowering students to express themselves clearly and confidently in any situation.' }
+  { number: '07', title: 'Speak to Lead', text: 'This program focuses on building communication, public speaking, and leadership skills while fostering emotional resilience, a positive outlook, and informed decision-making—empowering students to express themselves clearly and confidently in any situation.' },
+  { number: '08', title: 'Hands-on Science',text: 'Our hands-on Science activities turn concepts into experiences, encouraging students to observe, explore, experiment, and discover while making learning meaningful, practical, and engaging.'},
 ]
 
 export const testimonials = [

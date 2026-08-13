@@ -22,6 +22,9 @@ import facilitiesHero from '../assets/Photos/hero/IMG_8863.webp'
 import galleryHero from '../assets/Photos/hero/IMG_0440.webp'
 import contactHero from '../assets/Photos/hero/IMG_9875.webp'
 
+import principalPhoto from '../assets/Photos/people/IMG_8802.webp'
+import directorPhoto from '../assets/Photos/people/IMG_0577.webp'
+
 const images = {
   home: homeHero,
   about: aboutHero,
@@ -140,8 +143,22 @@ export function AboutPage() {
         <div className="container">
           <SectionHeading eyebrow="Core team" title="Experience guided by purpose" />
           <div className="people-grid">
-            <article className="person-card"><span className="person-initial">JK</span><div><p className="eyebrow">Director</p><h3>Jayan Krishnan</h3><p>With experience in technology, project management and educational administration, he leads financial administration, operations and innovative teaching methods at Bodhi.</p></div></article>
-            <article className="person-card"><span className="person-initial">AD</span><div><p className="eyebrow">Principal</p><h3>Anitha Dorairaj</h3><p>A civil engineer, former technology professional, educator, trainer and psychology postgraduate, she brings a rare blend of analytical thought and empathy to primary education.</p></div></article>
+            <article className="person-card">
+              <img className="person-photo" src={directorPhoto} alt="Jayan Krishnan" loading="lazy" />
+              <div>
+                <p className="eyebrow">Director</p>
+                <h3>Jayan Krishnan</h3>
+                <p>With experience in technology, project management and educational administration, he leads financial administration, operations and innovative teaching methods at Bodhi.</p>
+              </div>
+            </article>
+            <article className="person-card">
+              <img className="person-photo" src={principalPhoto} alt="Anitha Dorairaj" loading="lazy" />
+              <div>
+                <p className="eyebrow">Principal</p>
+                <h3>Anitha Dorairaj</h3>
+                <p>A civil engineer, former technology professional, educator, trainer and psychology postgraduate, she brings a rare blend of analytical thought and empathy to primary education.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
