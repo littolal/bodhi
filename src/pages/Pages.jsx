@@ -290,7 +290,9 @@ export function GalleryPage() {
       </section>
       <section className="gallery-section">
         <div className="container instagram-widget-shell">
-          <PoperInstagramWidget />
+          {/* <PoperInstagramWidget /> */}
+          <div class="sk-instagram-feed" data-embed-id="25705420"></div>
+          <script src="https://widgets.sociablekit.com/instagram-feed/widget.js" defer></script>
           <div className="instagram-widget-footer-bar" aria-hidden="true" />
         </div>
       </section>
