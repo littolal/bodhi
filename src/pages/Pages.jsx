@@ -8,7 +8,7 @@ import {
   strengths,
   testimonials,
 } from '../data/content'
-import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, PoperInstagramWidget, QuoteBlock, SectionHeading, Seo, InstagramFeed } from '../components/UI'
+import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, QuoteBlock, SectionHeading, Seo, InstagramFeed } from '../components/UI'
 import { ExpandableGallery } from '../components/ui/GalleryAnimation'
 import facebookLogo from '../assets/Facebook_Logo_Primary.webp'
 import instagramLogo from '../assets/Instagram_Glyph_Gradient.webp'
