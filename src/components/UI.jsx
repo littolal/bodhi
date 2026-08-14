@@ -117,62 +117,103 @@ export function QuoteBlock({ quote, author }) {
   )
 }
 
-export function PoperInstagramWidget() {
-  const widgetRef = useRef(null)
-  const [isLoaded, setIsLoaded] = useState(false)
+// export function PoperInstagramWidget() {
+//   const widgetRef = useRef(null)
+//   const [isLoaded, setIsLoaded] = useState(false)
 
+//   useEffect(() => {
+//     const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
+//     const scriptId = 'poper-js-script'
+//     const domain = "bodhischool.vercel.app"
+//     window.Poper = window.Poper || []
+//     window.Poper.push({ accountID, domain })
+
+//     if (!document.getElementById(scriptId)) {
+//       const script = document.createElement('script')
+//       script.id = scriptId
+//       script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=msm1bwnm`
+//       script.defer = true
+//       script.setAttribute('data-account-id', accountID)
+//       script.setAttribute('data-domain', domain)
+//       document.body.appendChild(script)
+//     }
+//   }, [])
+
+//   useEffect(() => {
+//     if (!widgetRef.current) return undefined
+
+//     const observer = new MutationObserver(() => {
+//       if (widgetRef.current?.children.length) {
+//         setIsLoaded(true)
+//       }
+//     })
+
+//     observer.observe(widgetRef.current, { childList: true, subtree: true })
+//     return () => observer.disconnect()
+//   }, [])
+
+//   return (
+//     <div className="instagram-widget" aria-label="Latest from Instagram">
+//       <div className="instagram-widget-head">
+//         <div>
+//           <h2>Latest from Instagram</h2>
+//         </div>
+//       </div>
+//       <div className="instagram-widget-card instagram-widget-card-poper">
+//         {!isLoaded && (
+//           <div className="instagram-widget-loader" aria-hidden="true">
+//             <div className="instagram-loader-head">
+//               <span />
+//               <div><span /><span /></div>
+//             </div>
+//             <div className="instagram-loader-grid">
+//               {Array.from({ length: 8 }).map((_, index) => <span key={index} />)}
+//             </div>
+//           </div>
+//         )}
+//         <div ref={widgetRef} className={isLoaded ? 'poper-12711 is-loaded' : 'poper-12711'} />
+//       </div>
+//     </div>
+//   )
+// }
+
+export function InstagramFeed() {
   useEffect(() => {
-    const accountID = '375feabe0f1208b86e17dfd51ffec9d0'
-    const scriptId = 'poper-js-script'
-    const domain = "bodhischool.vercel.app"
-    window.Poper = window.Poper || []
-    window.Poper.push({ accountID, domain })
+    const script = document.createElement("script");
+    script.src = "https://embedsocial.com/cdn/ht.js";
+    script.id = "EmbedSocialHashtagScript";
+    script.async = true;
 
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script')
-      script.id = scriptId
-      script.src = `https://app.poper.ai/share/poper.js?accountID=${accountID}&v=msm1bwnm`
-      script.defer = true
-      script.setAttribute('data-account-id', accountID)
-      script.setAttribute('data-domain', domain)
-      document.body.appendChild(script)
-    }
-  }, [])
+    document.body.appendChild(script);
 
-  useEffect(() => {
-    if (!widgetRef.current) return undefined
+    return () => {
+      const existingScript = document.getElementById(
+        "EmbedSocialHashtagScript"
+      );
 
-    const observer = new MutationObserver(() => {
-      if (widgetRef.current?.children.length) {
-        setIsLoaded(true)
+      if (existingScript) {
+        existingScript.remove();
       }
-    })
-
-    observer.observe(widgetRef.current, { childList: true, subtree: true })
-    return () => observer.disconnect()
-  }, [])
+    };
+  }, []);
 
   return (
-    <div className="instagram-widget" aria-label="Latest from Instagram">
-      <div className="instagram-widget-head">
-        <div>
-          <h2>Latest from Instagram</h2>
+    <div
+      className="embedsocial-hashtag"
+      data-ref="2f0cdbcccfa95cd939e3436ecdedc69e24cd7ec4"
+    >
+      <a
+        className="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding"
+        href="https://embedsocial.com/social-media-aggregator/"
+        target="_blank"
+        rel="noreferrer"
+        title="Instagram widget"
+      >
+
+        <div className="es-widget-branding-text">
+          Instagram widget
         </div>
-      </div>
-      <div className="instagram-widget-card instagram-widget-card-poper">
-        {!isLoaded && (
-          <div className="instagram-widget-loader" aria-hidden="true">
-            <div className="instagram-loader-head">
-              <span />
-              <div><span /><span /></div>
-            </div>
-            <div className="instagram-loader-grid">
-              {Array.from({ length: 8 }).map((_, index) => <span key={index} />)}
-            </div>
-          </div>
-        )}
-        <div ref={widgetRef} className={isLoaded ? 'poper-12711 is-loaded' : 'poper-12711'} />
-      </div>
+      </a>
     </div>
-  )
+  );
 }

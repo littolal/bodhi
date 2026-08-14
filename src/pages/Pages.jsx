@@ -8,7 +8,7 @@ import {
   strengths,
   testimonials,
 } from '../data/content'
-import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, PoperInstagramWidget, QuoteBlock, SectionHeading, Seo } from '../components/UI'
+import { ArrowIcon, ButtonLink, FeatureGrid, PageHero, PhoneContact, PoperInstagramWidget, QuoteBlock, SectionHeading, Seo, InstagramFeed } from '../components/UI'
 import { ExpandableGallery } from '../components/ui/GalleryAnimation'
 import facebookLogo from '../assets/Facebook_Logo_Primary.webp'
 import instagramLogo from '../assets/Instagram_Glyph_Gradient.webp'
@@ -290,9 +290,12 @@ export function GalleryPage() {
       </section>
       <section className="gallery-section">
         <div className="container instagram-widget-shell">
-          {/* <PoperInstagramWidget /> */}
-          <div class="sk-instagram-feed" data-embed-id="25705420"></div>
-          <script src="https://widgets.sociablekit.com/instagram-feed/widget.js" defer></script>
+          <div className="instagram-widget-head">
+            <div>
+              <h2>Latest from Instagram</h2>
+            </div>
+          </div>
+          <InstagramFeed />
           <div className="instagram-widget-footer-bar" aria-hidden="true" />
         </div>
       </section>
@@ -346,13 +349,13 @@ export function ContactPage() {
             <a>Visit our socials:</a>
             <div className="social-links">
               <a href="https://www.facebook.com/Bodhischool/" target="_blank" rel="noreferrer" aria-label="Facebook">
-                <img className="social-icon" src={facebookLogo} alt="Facebook" loading="lazy"/>
+                <img className="social-icon" src={facebookLogo} alt="Facebook" loading="lazy" />
               </a>
               <a href="https://www.instagram.com/_bodhischool_/" target="_blank" rel="noreferrer" aria-label="Instagram">
-                <img className="social-icon" src={instagramLogo} alt="Instagram" loading="lazy"/>
+                <img className="social-icon" src={instagramLogo} alt="Instagram" loading="lazy" />
               </a>
               <a href="https://wa.me/919388709700?text=Hi%20there" target="_blank" rel="noreferrer" aria-label="WhatsApp">
-                <img className="social-icon" src={whatsappLogo} alt="WhatsApp" loading="lazy"/>
+                <img className="social-icon" src={whatsappLogo} alt="WhatsApp" loading="lazy" />
               </a>
             </div>
             <p className="career-note">Love being around children? Send your resume to <a href="mailto:jobs@bodhischool.com">jobs@bodhischool.com</a>.</p>
