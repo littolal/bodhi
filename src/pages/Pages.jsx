@@ -156,7 +156,7 @@ export function AboutPage() {
               <div>
                 <p className="eyebrow">Principal</p>
                 <h3>Anitha Dorairaj</h3>
-                <p>A civil engineer, former technology professional, educator, trainer and psychology postgraduate, she brings a rare blend of analytical thought and empathy to primary education.</p>
+                <p>A civil engineer and former software professional, educator, motivational speaker, psychology postgraduate, and international Emotional Intelligence trainer, she brings a rare blend of analytical thinking and empathy to the field of school education.</p>
               </div>
             </article>
           </div>
@@ -304,9 +304,73 @@ export function GalleryPage() {
 }
 
 export function ContactPage() {
+  function validateForm(formData) {
+    const errors = {};
+    
+    // Validate student name - text string, min 2 chars
+    const student = formData.get('student')?.trim();
+    if (!student || student.length < 2) {
+      errors.student = 'Student name must be at least 2 characters';
+    }
+    if (student && !/^[a-zA-Z\s,\.]+$/.test(student)) {
+      errors.student = 'Student name should contain only letters, spaces, commas, and dots';
+    }
+    
+    // Validate age - number between 2 and 18
+    const age = parseFloat(formData.get('age'));
+    if (isNaN(age) || age < 1 || age > 18) {
+      errors.age = 'Age must be a number between 1 and 18';
+    }
+    
+    // Validate class sought - text or number, min 1 char
+    const classValue = formData.get('class')?.trim();
+    if (!classValue) {
+      errors.class = 'Class sought is required';
+    }
+    
+    // Validate parent name - text string, min 2 chars
+    const parent = formData.get('parent')?.trim();
+    if (!parent || parent.length < 2) {
+      errors.parent = 'Parent name must be at least 2 characters';
+    }
+    if (parent && !/^[a-zA-Z\s,\.]+$/.test(parent)) {
+      errors.parent = 'Parent name should contain only letters, spaces, commas, and dots';
+    }
+    
+    // Validate email format
+    const email = formData.get('email')?.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    // Validate phone - exactly 10 digits
+    const phone = formData.get('phone')?.replace(/\D/g, '');
+    if (!phone || phone.length !== 10) {
+      errors.phone = 'Phone number must be exactly 10 digits';
+    }
+    
+    // Validate message - min 10 chars
+    const message = formData.get('message')?.trim();
+    if (!message || message.length < 10) {
+      errors.message = 'Enquiry must be at least 10 characters';
+    }
+    
+    return errors;
+  }
+
   function handleSubmit(event) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
+    const errors = validateForm(formData)
+    
+    // If there are validation errors, show alert and don't proceed
+    if (Object.keys(errors).length > 0) {
+      const errorMessage = Object.values(errors).join('\n');
+      alert(`Please fix the following errors:\n\n${errorMessage}`);
+      return;
+    }
+    
     const message = `
     Dear Admissions Team,
 
@@ -361,11 +425,11 @@ export function ContactPage() {
             <p className="career-note">Love being around children? Send your resume to <a href="mailto:jobs@bodhischool.com">jobs@bodhischool.com</a>.</p>
           </div>
           <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="field"><label htmlFor="student">Name of student</label><input id="student" name="student" required /></div>
-            <div className="form-row"><div className="field"><label htmlFor="age">Age</label><input id="age" name="age" inputMode="decimal" required /></div><div className="field"><label htmlFor="class">Class sought</label><input id="class" name="class" required /></div></div>
-            <div className="field"><label htmlFor="parent">Name of parent</label><input id="parent" name="parent" required /></div>
-            <div className="form-row"><div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" required /></div><div className="field"><label htmlFor="phone">Mobile number</label><input id="phone" name="phone" type="tel" required /></div></div>
-            <div className="field"><label htmlFor="message">Your enquiry</label><textarea id="message" name="message" rows="4" required /></div>
+            <div className="field"><label htmlFor="student">Name of student</label><input id="student" name="student" type="text" placeholder="E.g., John Smith" minLength="2" required /></div>
+            <div className="form-row"><div className="field"><label htmlFor="age">Age</label><input id="age" name="age" type="number" min="1" max="18" placeholder="E.g., 5" required /></div><div className="field"><label htmlFor="class">Class sought</label><input id="class" name="class" type="text" placeholder="E.g., UKG or Pre-KG" required /></div></div>
+            <div className="field"><label htmlFor="parent">Name of parent</label><input id="parent" name="parent" type="text" placeholder="E.g., Jane Smith" minLength="2" required /></div>
+            <div className="form-row"><div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" placeholder="E.g., jane@example.com" required /></div><div className="field"><label htmlFor="phone">Mobile number</label><input id="phone" name="phone" type="tel" placeholder="10-digit number" pattern="[0-9]{10}" maxLength="10" required /></div></div>
+            <div className="field"><label htmlFor="message">Your enquiry</label><textarea id="message" name="message" rows="4" placeholder="Tell us more about your enquiry (minimum 10 characters)" minLength="10" required /></div>
             <button className="button" type="submit">Send enquiry <ArrowIcon /></button>
           </form>
         </div>

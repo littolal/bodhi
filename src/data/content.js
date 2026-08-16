@@ -81,10 +81,11 @@ export const admissionSteps = [
 ]
 
 export const ageGroups = [
-  ['2.5 years', 'Foundation Stage (Pre-KG)'],
-  ['3.5 years', 'KG Prep I (LKG)'],
-  ['4.5 years', 'KG Prep II (UKG)'],
-  ['5.5 years', 'Grade I'],
+  ['2 years', 'Play School'],
+  ['3 years', 'Foundation Stage (Pre-KG)'],
+  ['4 years', 'KG Prep I (LKG)'],
+  ['5 years', 'KG Prep II (UKG)'],
+  ['6 years', 'Grade I'],
 ]
 
 export const facilities = [
