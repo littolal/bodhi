@@ -24,7 +24,7 @@ export const navItems = [
 
 export const specialties = [
   { number: '01', title: 'Chess', text: 'Students develop strategic thinking, concentration, patience, emotional resilience, a positive outlook, and informed decision-making abilities—essential skills that support success both academically and in everyday life.' },
-  { number: '02', title: 'Robotics', text: 'Our robotics program introduces children to the exciting world of technology and innovation.By building and experimenting, students enhance their problem- solving skills, logical thinking, and creativity. ' },
+  { number: '02', title: 'Robotics', text: 'Our robotics program introduces children to the exciting world of technology and innovation. By building and experimenting, students enhance their problem- solving skills, logical thinking, and creativity. ' },
   { number: '03', title: 'Sports', text: 'Children build physical fitness, teamwork, discipline, and a strong sporting spirit—laying the foundation for a healthy and active lifestyle. ' },
   { number: '04', title: 'Kalari', text: 'We proudly offer training in the traditional martial art of Kalaripayattu. This ancient practice helps improve strength, flexibility, focus, and self-discipline while connecting children to cultural roots.' },
   { number: '05', title: 'Developmental Drama', text: 'Our structured drama and communication program helps students develop confidence, creativity, communication skills, and emotional expression through engaging, interactive experiences.' },
@@ -51,8 +51,8 @@ export const testimonials = [
     name: 'Dr. Hima - Parents of Isha H of Grade VI and Jiya H of Grade II',
   },
   {
-    quote: 'Selecting the right school is one of the most significant decisions a parent can make. As my eldest daughter completes her 10th-grade journey at Bodhi School, I want to express my sincere gratitude for the remarkable experience we have had. Bodhi School provides much more than just an education; it offers a safe, nurturing environment where children are taught to lead with values and integrity. I have been particularly impressed by the school’s commitment to individual growth. Through a wide range of opportunities, my daughter was encouraged to explore her unique talents and build the confidence to express herself authentically. What truly sets Bodhi apart is the personalised attention from the faculty. I am deeply grateful to the entire Bodhi community',
-    name: 'Dr. Meera Babu - Parents of Akshit Abhilash of Grade IX and Advika Abhilash (Grade X alumna)'
+    quote: 'Selecting the right school is one of the most significant decisions a parent can make. As my eldest daughter completes her 10th-grade journey at Bodhi School, I want to express my sincere gratitude for the remarkable experience we have had. Bodhi School provides much more than just an education; it offers a safe, nurturing environment where children are taught to lead with values and integrity. I have been particularly impressed by the school’s commitment to individual growth. Through a wide range of opportunities, my daughter was encouraged to explore her unique talents and build the confidence to express herself authentically. What truly sets Bodhi apart is the personalised attention from the faculty. I am deeply grateful to the entire Bodhi community.',
+    name: 'Dr. Meera Babu - Parents of Akshit Abhilash of Grade IX and Advika Abhilash (Grade X alumna)'
   },
 ]
 
@@ -73,7 +73,7 @@ export const strengths = [
 export const admissionSteps = [
   'Check the minimum age requirement. An appropriate class may be recommended after assessment.',
   'Visit our office to understand age-group expectations and basic fee details.',
-  'Book an appointment for your child’s one-to-one assessment.',
+  'Book an appointment for your child’s one-on-one assessment.',
   'A teacher assesses the child’s strengths and areas for improvement.',
   'The teacher discusses the assessment with the parents in detail.',
   'Parents may purchase and complete the application form.',
@@ -89,12 +89,12 @@ export const ageGroups = [
 ]
 
 export const facilities = [
-  { title: 'Thoughtful classrooms', text: 'Dust-free rooms, non-allergic whiteboards, filtered drinking water and clean child-friendly spaces.' },
-  { title: 'Learning technology', text: 'Projectors, computer-aided teaching, a computer room, tab room, lab and library facilities.' },
-  { title: 'Play & movement', text: 'Safe non-toxic play equipment, sports trainers, yoga, dance, Kung Fu and physical development programs.' },
-  { title: 'Health & safety', text: 'Yearly physical and dental examinations, secure storage and government-approved transport with GPS.' },
-  { title: 'Creative confidence', text: 'Drama, robotics, brain-booster games and opportunities to participate in events beyond school.' },
-  { title: 'Life beyond lessons', text: 'Cooking, stitching, personal chores, educational field trips and an annual picnic.' },
+  { title: 'Thoughtful Classrooms', text: 'Dust-free rooms, non-allergic whiteboards, filtered drinking water and clean child-friendly spaces.' },
+  { title: 'Learning Technology', text: 'Projectors, smart boards, computer-aided teaching, computer room, tab room, lab and library facilities.' },
+  { title: 'Play & Movement', text: 'Safe non-toxic play equipment, sports trainers, yoga, dance, Kung Fu and physical development programs.' },
+  { title: 'Health & Safety', text: 'Yearly physical and dental examinations, secure storage and government-approved transport with GPS.' },
+  { title: 'Creative Confidence', text: 'Drama, robotics, brain-booster games and opportunities to participate in events beyond school.' },
+  { title: 'Life Beyond Lessons', text: 'Cooking, stitching, personal chores, educational field trips and an annual picnic.' },
 ]
 
 export const gallerySections = [

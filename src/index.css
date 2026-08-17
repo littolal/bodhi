@@ -158,10 +158,10 @@ p { max-width: 68ch; }
 .current-students p { margin-inline: auto; font-size: 1.2rem; }
 .inclusive-note { margin-top: 35px; padding: 20px; background: var(--cream); color: var(--olive); font-weight: 600; }
 
-.facility-band { background: var(--moss); color: white; }
-.facility-band-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 9vw; }
+.facility-band { background: var(--moss); color: white;align-content:center}
+.facility-band-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 9vw; }
 .facility-band span { color: #dfe9b4; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; }
-.facility-band p { font-size: 1.3rem; }
+.facility-band p { font-size: 1.4rem; }
 
 .expandable-gallery { display: grid; gap: 0px; }
 .expandable-gallery-section { display: grid; gap: 18px; }

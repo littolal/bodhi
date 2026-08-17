@@ -274,7 +274,22 @@ export function FacilitiesPage() {
           <FeatureGrid items={facilities} />
         </div>
       </section>
-      <section className="section facility-band"><div className="container facility-band-grid"><div><span>Beyond the classroom</span><h2>Real life is part of the curriculum</h2></div><p>Field trips, cooking, cleaning, personal chores and public events connect lessons to the world children see around them.</p></div></section>
+
+      <section className="section tinted-section">
+        <div className="container split-grid">
+          <SectionHeading eyebrow="Beyond the classroom" title="Real life is part of the curriculum" />
+          <div className="facility-band">
+            <p>Field trips, cooking, cleaning, personal chores and public events connect lessons to the world children see around them.</p>
+          </div>
+        </div>
+      </section>
+
+
+      {/* <section className="section facility-band">
+        <div className="container facility-band-grid"><div>
+          <span>Beyond the classroom</span>
+          <h2>Real life is part of the curriculum</h2></div>
+          <p>Field trips, cooking, cleaning, personal chores and public events connect lessons to the world children see around them.</p></div></section> */}
       <Callout />
     </>
   )
@@ -306,7 +321,7 @@ export function GalleryPage() {
 export function ContactPage() {
   function validateForm(formData) {
     const errors = {};
-    
+
     // Validate student name - text string, min 2 chars
     const student = formData.get('student')?.trim();
     if (!student || student.length < 2) {
@@ -315,19 +330,19 @@ export function ContactPage() {
     if (student && !/^[a-zA-Z\s,\.]+$/.test(student)) {
       errors.student = 'Student name should contain only letters, spaces, commas, and dots';
     }
-    
+
     // Validate age - number between 2 and 18
     const age = parseFloat(formData.get('age'));
     if (isNaN(age) || age < 1 || age > 18) {
       errors.age = 'Age must be a number between 1 and 18';
     }
-    
+
     // Validate class sought - text or number, min 1 char
     const classValue = formData.get('class')?.trim();
     if (!classValue) {
       errors.class = 'Class sought is required';
     }
-    
+
     // Validate parent name - text string, min 2 chars
     const parent = formData.get('parent')?.trim();
     if (!parent || parent.length < 2) {
@@ -336,26 +351,26 @@ export function ContactPage() {
     if (parent && !/^[a-zA-Z\s,\.]+$/.test(parent)) {
       errors.parent = 'Parent name should contain only letters, spaces, commas, and dots';
     }
-    
+
     // Validate email format
     const email = formData.get('email')?.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
       errors.email = 'Please enter a valid email address';
     }
-    
+
     // Validate phone - exactly 10 digits
     const phone = formData.get('phone')?.replace(/\D/g, '');
     if (!phone || phone.length !== 10) {
       errors.phone = 'Phone number must be exactly 10 digits';
     }
-    
+
     // Validate message - min 10 chars
     const message = formData.get('message')?.trim();
     if (!message || message.length < 10) {
       errors.message = 'Enquiry must be at least 10 characters';
     }
-    
+
     return errors;
   }
 
@@ -363,14 +378,14 @@ export function ContactPage() {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const errors = validateForm(formData)
-    
+
     // If there are validation errors, show alert and don't proceed
     if (Object.keys(errors).length > 0) {
       const errorMessage = Object.values(errors).join('\n');
       alert(`Please fix the following errors:\n\n${errorMessage}`);
       return;
     }
-    
+
     const message = `
     Dear Admissions Team,
 
