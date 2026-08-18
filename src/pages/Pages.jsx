@@ -38,7 +38,7 @@ const images = {
 export function HomePage() {
   return (
     <>
-      <Seo title="Home" description="Bodhi School empowers young minds through conceptual learning, creativity and care in Trivandrum." />
+      <Seo title="Home" description="Bodhi School empowers young minds through conceptual learning, creativity and care in Trivandrum." keywords="Best International school in Trivandrum, top school in Trivandrum, holistic education schools, conceptual learning school, preschool Trivandrum, Top Schools in Thiruvananthapuram, Best Schools in Thiruvananthapuram, Top IGCSE schools Trivandrum, Best IGCSE school Trivandrum, Top IGCSE school Thiruvananthapuram" />
       <section className="home-hero">
         <div className="container home-hero-grid">
           <div className="home-hero-copy reveal">
@@ -118,7 +118,7 @@ export function AboutPage() {
   ]
   return (
     <>
-      <Seo title="About us" description="Learn about Bodhi School’s vision, mission, leadership and dedicated teaching team." />
+      <Seo title="About us" description="Learn about Bodhi School's vision, mission, leadership and dedicated teaching team." keywords="Bodhi School vision, best school Trivandrum, experienced teachers, holistic education, child-centered learning" />
       <PageHero eyebrow="About us" title="A school built around the whole child" intro="Knowledge matters. So do confidence, kindness, resilience and the courage to remain curious." image={images.about} />
       <section className="section">
         <div className="container split-grid">
@@ -180,7 +180,7 @@ export function AboutPage() {
 export function WhyBodhiPage() {
   return (
     <>
-      <Seo title="Why Bodhi" description="Discover Bodhi School’s learning philosophy, strengths and approach to early education." />
+      <Seo title="Why Bodhi" description="Discover Bodhi School's learning philosophy, strengths and approach to early education." keywords="top IGCSE schools Trivandrum, best kindergartens Thiruvananthapuram, early childhood education, holistic learning, Trivandrum preschool" />
       <PageHero eyebrow="Why Bodhi" title="Like a tree, a child flourishes with the right care" intro="The name Bodhi evokes enlightenment and the patient work of helping young minds become strong, smart and generous." image={images.why} />
       <section className="section tinted-section">
         <div className="container split-grid">
@@ -223,7 +223,7 @@ export function WhyBodhiPage() {
 export function AdmissionPage() {
   return (
     <>
-      <Seo title="Admission" description="View Bodhi School’s admission process, age eligibility and enrolment information." />
+      <Seo title="Admission" description="View Bodhi School's admission process, age eligibility and enrolment information." keywords="school admission Trivandrum, IGCSE curriculum, IGCSE Syllabus, age eligibility, school enrollment, best schools Thiruvananthapuram" />
       <PageHero eyebrow="Admission" title="A thoughtful beginning to your child’s Bodhi journey" intro="Our admission process helps families and teachers understand the child, choose the right placement and begin with confidence." image={images.admission}><ButtonLink to="/contact">Plan a school visit</ButtonLink></PageHero>
       <section className="section tinted-section">
         <div className="container split-grid">
@@ -266,7 +266,7 @@ export function AdmissionPage() {
 export function FacilitiesPage() {
   return (
     <>
-      <Seo title="Facilities" description="Explore Bodhi School’s classrooms, learning technology, sports, health and life-skills facilities." />
+      <Seo title="Facilities" description="Explore Bodhi School's classrooms, learning technology, sports, health and life-skills facilities." keywords="school facilities, learning environment, classroom infrastructure, sports facilities, top school Trivandrum, top school Thiruvananthapuram" />
       <PageHero eyebrow="Facilities" title="Spaces designed for movement, focus and discovery" intro="Our learning environment stays child-friendly and joyful without compromising safety, cleanliness or educational standards." image={images.facilities} />
       <section className="section">
         <div className="container">
@@ -298,7 +298,7 @@ export function FacilitiesPage() {
 export function GalleryPage() {
   return (
     <>
-      <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." />
+      <Seo title="Gallery" description="See moments from field visits, sports day, annual day, picnics and science exhibitions at Bodhi School." keywords="school activities, school events, student life, field trips, best school Trivandrum" />
       <PageHero eyebrow="Gallery" title="School life, in all its colour" intro="A glimpse of children learning, moving, making and celebrating together." image={images.gallery} />
       <section className="section">
         <ExpandableGallery sections={gallerySections} className="container" />
@@ -414,9 +414,10 @@ export function ContactPage() {
       whatsappWindow.opener = null
     }
   }
+
   return (
     <>
-      <Seo title="Contact" description="Contact Bodhi School in Pettah, Trivandrum for admissions, visits and general enquiries." />
+      <Seo title="Contact" description="Contact Bodhi School in Pettah, Trivandrum for admissions, visits and general enquiries." keywords="contact Bodhi School, school enquiry Trivandrum, admission contact, Bodhi School Pettah, Bodhi School Thiruvananthapuram, Best Schools in Trivandrum, Best Schools in Thiruvananthapuram, Best IGCSE schools Trivandrum, Best IGCSE school Trivandrum, Top IGCSE school Thiruvananthapuram, Good Kindergarten Trivandrum, Best Kindergarten Thiruvananthapuram, Top International Schools in Trivandrum, Top International Schools in Thiruvananthapuram" />
       <PageHero eyebrow="Contact" title="Let’s begin with a conversation" intro="Ask about admission, arrange a visit or tell us what you would like to know." image={images.contact} />
       <section className="section">
         <div className="container contact-grid">

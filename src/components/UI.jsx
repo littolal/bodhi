@@ -1,11 +1,14 @@
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export function Seo({ title, description }) {
+export function Seo({ title, description, keywords }) {
   useEffect(() => {
     document.title = `${title} | Bodhi School`
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
-  }, [description, title])
+    if (keywords) {
+      document.querySelector('meta[name="keywords"]')?.setAttribute('content', keywords)
+    }
+  }, [description, title, keywords])
   return null
 }
 
