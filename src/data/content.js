@@ -31,6 +31,8 @@ export const specialties = [
   { number: '06', title: 'Finance Funda', text: 'Our Finance Funda sessions introduce children to basic financial literacy—helping them understand money, saving, and responsible decision-making from an early age.' },
   { number: '07', title: 'Speak to Lead', text: 'This program focuses on building communication, public speaking, and leadership skills while fostering emotional resilience, a positive outlook, and informed decision-making—empowering students to express themselves clearly and confidently in any situation.' },
   { number: '08', title: 'Hands-on Science',text: 'Our hands-on Science activities turn concepts into experiences, encouraging students to observe, explore, experiment, and discover while making learning meaningful, practical, and engaging.'},
+  { number: '09', title: 'Yoga', text: 'Yoga at Bodhi nurtures physical well-being, mental balance, mindfulness and inner strength through regular practice.'},
+  { number: '10', title: 'Multiple Intelligence Program', text: 'MIP puzzles help children develop hand-eye coordination through engaging tasks that strengthen focus, accuracy, motor skills, left- and right-brain activation, and coordination between visual perception and hand movements.'}
 ]
 
 export const testimonials = [
